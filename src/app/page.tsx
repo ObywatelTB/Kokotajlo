@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -69,7 +69,7 @@ export default function Home() {
 
             {/* Right Column - Mengran */}
             <div className="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-xl shadow-sm">
-              <h3 className="text-2xl font-semibold text-accent-green mb-4">Mengran (Maggie) Wang</h3>
+              <h3 className="text-2xl font-semibold text-accent-green mb-4">Mengran Zhao</h3>
               <p className="text-gray-700 leading-relaxed">
                 Développeuse d'affaires chinoise de 33 ans, experte en marchés internationaux.
                 Spécialiste en expansion commerciale et en relations avec les entreprises européennes.
@@ -87,6 +87,69 @@ export default function Home() {
                 pour offrir des solutions d'IA véritablement conformes et efficaces.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Overview Section */}
+      <section className="py-20 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">
+            Nos Services
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {/* Service Card 1 - Local AI Agents */}
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+              <div className="w-16 h-16 bg-primary-blue/10 rounded-lg flex items-center justify-center mb-6">
+                <span className="text-3xl">🧠</span>
+              </div>
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                Agents IA Locaux
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                LLMs hébergés en local pour sécurité et performance. RAG pour données d'entreprise sécurisées.
+                Protégez vos informations sensibles tout en bénéficiant d'une IA puissante et personnalisée.
+              </p>
+            </div>
+
+            {/* Service Card 2 - Industrial Automation */}
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+              <div className="w-16 h-16 bg-accent-green/10 rounded-lg flex items-center justify-center mb-6">
+                <span className="text-3xl">⚙️</span>
+              </div>
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                Automatisation Industrielle
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Extension IoT avec raisonnement IA – Remplacez les tâches humaines dans vending/manufacturing.
+                Optimisez vos processus industriels avec des agents intelligents qui apprennent et s'adaptent.
+              </p>
+            </div>
+
+            {/* Service Card 3 - Compliance Guarantee */}
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+              <div className="w-16 h-16 bg-primary-blue/10 rounded-lg flex items-center justify-center mb-6">
+                <span className="text-3xl">✅</span>
+              </div>
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                Conformité Garantie
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Prêts AI Act & GDPR dès le départ. Pilotes personnalisés pour grandes firmes françaises (€200k + shares).
+                Démarrez votre transformation digitale en toute sérénité réglementaire.
+              </p>
+            </div>
+          </div>
+
+          {/* Services CTA */}
+          <div className="text-center">
+            <Link
+              href="/contact"
+              className="inline-block bg-accent-green hover:bg-green-600 text-white font-semibold px-8 py-4 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+            >
+              Proposer un Pilote
+            </Link>
           </div>
         </div>
       </section>

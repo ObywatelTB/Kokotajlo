@@ -28,16 +28,20 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Pydantic models
+
+
 class ChatRequest(BaseModel):
     message: str
     language: Optional[str] = "fr"
     context: Optional[Dict[str, Any]] = None
+
 
 class ChatResponse(BaseModel):
     response: str
     language: str
     timestamp: str
     conversation_id: Optional[str] = None
+
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -51,7 +55,8 @@ app = FastAPI(
 # Rate limiting
 limiter = Limiter(key_func=get_remote_address)
 app.state.limiter = limiter
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+app.add_exception_handler(
+    RateLimitExceeded, _rate_limit_exceeded_handler)  # type: ignore
 app.add_middleware(SlowAPIMiddleware)
 
 # CORS middleware

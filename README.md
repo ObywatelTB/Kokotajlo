@@ -125,7 +125,8 @@ cd backend && poetry run uvicorn main:app --host 0.0.0.0 --port $PORT
 - ✅ TypeScript throughout
 - ✅ ESLint + Prettier configuration
 - ✅ Poetry dependency management
-- ✅ UI: French content in app/. Hero/About: French pitch for compliant AI agents; run dev:frontend to view.
+- ✅ UI: French content in app/. Hero/About/Services: French pitch for compliant AI agents; run dev:frontend to view.
+- ✅ Backend: FastAPI prepped for /chat (Pydantic models, CORS for localhost:4000, witty responses, rate limiting).
 
 ## Usage
 
