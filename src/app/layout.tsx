@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import Header from '@/components/Header';
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -73,29 +69,12 @@ export default async function RootLayout({
   return (
     <html lang="fr">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-white text-gray-900`}
+        className={`${inter.variable} font-sans antialiased min-h-screen bg-white text-gray-900`}
       >
         <NextIntlClientProvider messages={messages}>
-          {/* Navigation placeholder - to be implemented */}
-          <nav className="border-b border-gray-200">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex justify-between h-16">
-                <div className="flex">
-                  <div className="flex-shrink-0 flex items-center">
-                    <h1 className="text-xl font-bold text-gray-900">Kokotajlo</h1>
-                  </div>
-                </div>
-                {/* Language switcher placeholder for next-intl */}
-                <div className="flex items-center space-x-4">
-                  <span className="text-sm text-gray-500">FR</span>
-                  <span className="text-gray-300">|</span>
-                  <span className="text-sm text-gray-400">EN</span>
-                </div>
-              </div>
-            </div>
-          </nav>
+          <Header />
 
-          <main className="flex-1">
+          <main className="flex-1 pt-16">
             {children}
           </main>
 
