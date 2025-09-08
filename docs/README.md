@@ -2,6 +2,13 @@
 
 Detailed docs for AI Agents FR. Subdirs: n8n (future workflows), railway (deploy guide), styles (Tailwind config, fonts: Inter, colors: Blue #1E3A8A for trust, Green #10B981 for growth—French enterprise vibe).
 
+
+```bash
+files-to-prompt  . -o llm-data/concat.txt -e .py -e .tsx -e .ts
+
+files-to-prompt  . -o llm-data/concat.txt -e .py -e .tsx -e .ts -e .css
+```
+
 ## Overview
 
 This documentation covers the technical implementation of Kokotajlo, a French enterprise AI agents platform. Our focus is on GDPR/AI Act compliance while delivering powerful automation solutions for French businesses.
