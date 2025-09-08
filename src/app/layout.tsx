@@ -1,7 +1,5 @@
 import Header from '@/components/Header';
 import type { Metadata } from "next";
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -57,36 +55,30 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Providing all messages to the client
-  // side is the easiest way to get started
-  const messages = await getMessages();
-
   return (
     <html lang="fr">
       <body
         className={`${inter.variable} font-sans antialiased min-h-screen bg-white text-gray-900`}
       >
-        <NextIntlClientProvider messages={messages}>
-          <Header />
+        <Header />
 
-          <main className="flex-1 pt-16">
-            {children}
-          </main>
+        <main className="flex-1 pt-16">
+          {children}
+        </main>
 
-          {/* Footer placeholder */}
-          <footer className="border-t border-gray-200 mt-auto">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-              <div className="text-center text-sm text-gray-500">
-                <p>&copy; 2024 Kokotajlo. Tous droits réservés.</p>
-              </div>
+        {/* Footer placeholder */}
+        <footer className="border-t border-gray-200 mt-auto">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="text-center text-sm text-gray-500">
+              <p>&copy; 2024 Kokotajlo. Tous droits réservés.</p>
             </div>
-          </footer>
-        </NextIntlClientProvider>
+          </div>
+        </footer>
       </body>
     </html>
   );
