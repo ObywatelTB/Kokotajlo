@@ -10,14 +10,22 @@ interface Message {
   timestamp: Date;
 }
 
-const Chatbot = () => {
-  const [isOpen, setIsOpen] = useState(false);
+type Position = 'top-right' | 'bottom-right';
+interface ChatbotProps {
+  position?: Position;
+  defaultOpen?: boolean;
+}
+
+const Chatbot = ({ position = 'bottom-right', defaultOpen = false }: ChatbotProps) => {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
   const [isMinimized, setIsMinimized] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const positionClass = position === 'top-right' ? 'top-4 right-4' : 'bottom-4 right-4';
 
   // Initial message when widget opens
   useEffect(() => {
@@ -101,7 +109,7 @@ const Chatbot = () => {
 
   if (!isOpen) {
     return (
-      <div className="fixed bottom-4 right-4 z-50">
+      <div className={`fixed ${positionClass} z-50`}>
         <button
           onClick={() => setIsOpen(true)}
           className="bg-accent-green hover:bg-green-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 group"
@@ -114,7 +122,7 @@ const Chatbot = () => {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className={`fixed ${positionClass} z-50`}>
       <div className={`bg-white shadow-2xl rounded-lg border border-gray-200 transition-all duration-200 ${
         isMinimized ? 'w-80 h-14' : 'w-80 h-96'
       }`}>

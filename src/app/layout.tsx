@@ -73,7 +73,7 @@ export default function RootLayout({
         </main>
 
         {/* Chatbot Widget */}
-        <Chatbot />
+        <Chatbot position="top-right" defaultOpen={true} />
 
         {/* Footer placeholder */}
         <footer className="border-t border-gray-200 mt-auto">
