@@ -44,19 +44,24 @@ app.add_middleware(SlowAPIMiddleware)
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=os.getenv("CORS_ORIGINS", "http://localhost:3000").split(","),
+    allow_origins=os.getenv(
+        "CORS_ORIGINS", "http://localhost:3000").split(","),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # Health check endpoint
+
+
 @app.get("/health")
 async def health_check():
     """Health check endpoint"""
     return {"status": "healthy", "service": "kokotajlo-backend"}
 
 # API v1 routes
+
+
 @app.get("/api/v1/status")
 async def api_status():
     """API status endpoint"""
@@ -68,6 +73,8 @@ async def api_status():
     }
 
 # Chatbot proxy endpoint (placeholder for OpenAI integration)
+
+
 @app.post("/api/v1/chat")
 @limiter.limit("10/minute")
 async def chat_endpoint(request: Request, payload: Dict[str, Any]):
@@ -85,9 +92,12 @@ async def chat_endpoint(request: Request, payload: Dict[str, Any]):
         }
     except Exception as e:
         logger.error(f"Chat endpoint error: {str(e)}")
-        raise HTTPException(status_code=500, detail="Erreur interne du serveur")
+        raise HTTPException(
+            status_code=500, detail="Erreur interne du serveur")
 
 # Error handlers
+
+
 @app.exception_handler(HTTPException)
 async def http_exception_handler(request: Request, exc: HTTPException):
     """Custom HTTP exception handler"""
@@ -101,6 +111,7 @@ async def http_exception_handler(request: Request, exc: HTTPException):
             }
         }
     )
+
 
 @app.exception_handler(Exception)
 async def general_exception_handler(request: Request, exc: Exception):
@@ -118,11 +129,14 @@ async def general_exception_handler(request: Request, exc: Exception):
     )
 
 # Startup and shutdown events
+
+
 @app.on_event("startup")
 async def startup_event():
     """Application startup event"""
     logger.info("Starting Kokotajlo backend...")
     # TODO: Initialize database connections, AI clients, etc.
+
 
 @app.on_event("shutdown")
 async def shutdown_event():
@@ -132,7 +146,7 @@ async def shutdown_event():
 
 if __name__ == "__main__":
     host = os.getenv("API_HOST", "0.0.0.0")
-    port = int(os.getenv("API_PORT", 8000))
+    port = int(os.getenv("API_PORT", 4001))
     debug = os.getenv("DEBUG", "False").lower() == "true"
 
     uvicorn.run(

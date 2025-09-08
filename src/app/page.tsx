@@ -7,7 +7,7 @@ export const metadata = {
   openGraph: {
     title: 'Agents IA Conformes pour Entreprises Françaises',
     description: 'Solutions locales avec LLMs, RAG et MCP – Prêts pour l\'AI Act et GDPR',
-    url: '/',
+    url: 'http://localhost:4000/',
     siteName: 'AI Agents FR',
     locale: 'fr_FR',
     type: 'website',

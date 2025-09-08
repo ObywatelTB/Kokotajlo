@@ -1,79 +1,19 @@
 {
-  "hero": {
-    "title": "Compliant AI Agents for French Businesses",
-    "subtitle": "Intelligent and secure automation with GDPR and AI Act compliance",
-    "description": "Transform your business processes with local, reliable AI agents compliant with European regulations.",
-    "cta_primary": "Start Free Trial",
-    "cta_secondary": "View Demos"
-  },
   "navigation": {
     "home": "Home",
-    "services": "Services",
     "about": "About",
-    "contact": "Contact",
-    "language": "Language"
+    "services": "Services",
+    "resources": "Resources",
+    "contact": "Contact"
   },
-  "services": {
-    "title": "Our AI Services",
-    "automation": {
-      "title": "Process Automation",
-      "description": "Automate complex workflows with intelligent, compliant AI agents."
-    },
-    "iot": {
-      "title": "IoT Integration",
-      "description": "Connect IoT devices with AI agents for real-time decision making."
-    },
-    "compliance": {
-      "title": "GDPR Compliance",
-      "description": "Fully compliant AI solutions meeting European data protection regulations."
-    },
-    "local": {
-      "title": "Local LLMs",
-      "description": "Use France-hosted language models for data sovereignty."
-    }
-  },
-  "about": {
-    "title": "About Kokotajlo",
-    "mission": "Our mission is to democratize AI for French businesses while ensuring compliance and security.",
-    "values": {
-      "compliance": "Compliance first",
-      "security": "Data security",
-      "innovation": "Responsible innovation",
-      "local": "Digital sovereignty"
-    }
-  },
-  "contact": {
-    "title": "Contact Us",
-    "subtitle": "Ready to transform your business with AI?",
-    "form": {
-      "name": "Full name",
-      "email": "Email address",
-      "company": "Company",
-      "message": "Message",
-      "submit": "Send message"
-    }
-  },
-  "footer": {
-    "copyright": "© 2024 Kokotajlo. All rights reserved.",
-    "links": {
-      "privacy": "Privacy policy",
-      "terms": "Terms of use",
-      "support": "Support"
-    }
+  "hero": {
+    "title": "Compliant AI Agents for French Businesses",
+    "subtitle": "Local solutions with LLMs, RAG and MCP – Ready for AI Act and GDPR",
+    "cta_primary": "Discover Our Services",
+    "cta_secondary": "Discuss Partnership"
   },
   "common": {
     "loading": "Loading...",
-    "error": "An error occurred",
-    "success": "Operation successful",
-    "retry": "Retry",
-    "close": "Close",
-    "next": "Next",
-    "previous": "Previous",
-    "learn_more": "Learn more"
-  },
-  "seo": {
-    "meta_title": "Kokotajlo - Compliant AI Agents for French Businesses",
-    "meta_description": "GDPR-compliant AI agents platform for French companies. Intelligent automation, IoT, and data sovereignty.",
-    "keywords": "AI agents French businesses, GDPR automation, compliant AI, local LLMs, IoT artificial intelligence"
+    "error": "An error occurred"
   }
 }

@@ -17,11 +17,11 @@
         "clear": false
       },
       "label": "dev:frontend",
-      "detail": "npm run dev - Start Next.js development server"
+      "detail": "Start Next.js frontend on port 4000"
     },
     {
       "type": "shell",
-      "command": "cd backend && /Users/tobiaszbajek/.local/bin/poetry run uvicorn main:app --reload --host 0.0.0.0 --port 8000",
+      "command": "cd backend && /Users/tobiaszbajek/.local/bin/poetry run uvicorn main:app --reload --host 0.0.0.0 --port 4001",
       "group": "build",
       "presentation": {
         "echo": true,
@@ -32,47 +32,14 @@
         "clear": false
       },
       "label": "dev:backend",
-      "detail": "Start FastAPI development server with Poetry",
+      "detail": "Start FastAPI backend on port 4001",
       "options": {
         "cwd": "${workspaceFolder}"
       }
-    },
-    {
-      "type": "npm",
-      "script": "lint",
-      "group": "test",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared",
-        "showReuseMessage": true,
-        "clear": false
-      },
-      "label": "lint:frontend",
-      "detail": "npm run lint - Run ESLint on frontend code"
     },
     {
       "type": "shell",
-      "command": "cd backend && /Users/tobiaszbajek/.local/bin/poetry run black .",
-      "group": "test",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared",
-        "showReuseMessage": true,
-        "clear": false
-      },
-      "label": "lint:backend",
-      "detail": "Format Python code with Black",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      }
-    },
-    {
-      "type": "npm",
-      "script": "build",
+      "command": "npm run dev & cd backend && /Users/tobiaszbajek/.local/bin/poetry run uvicorn main:app --reload --host 0.0.0.0 --port 4001",
       "group": "build",
       "presentation": {
         "echo": true,
@@ -82,95 +49,8 @@
         "showReuseMessage": true,
         "clear": false
       },
-      "label": "build:frontend",
-      "detail": "npm run build - Build Next.js for production"
-    },
-    {
-      "type": "shell",
-      "command": "cd backend && /Users/tobiaszbajek/.local/bin/poetry run uvicorn main:app --host 0.0.0.0 --port 8000",
-      "group": "build",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared",
-        "showReuseMessage": true,
-        "clear": false
-      },
-      "label": "build:backend",
-      "detail": "Start FastAPI production server",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      }
-    },
-    {
-      "type": "shell",
-      "command": "cd src && npm run build && npx serve -s build -l 3001",
-      "group": "build",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared",
-        "showReuseMessage": true,
-        "clear": false
-      },
-      "label": "deploy:preview",
-      "detail": "Build and serve Next.js statically to simulate Railway deployment",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      }
-    },
-    {
-      "type": "shell",
-      "command": "cd src && npm run build && echo 'Checking SEO meta tags...' && grep -r 'Kokotajlo' build/ | head -10",
-      "group": "test",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared",
-        "showReuseMessage": true,
-        "clear": false
-      },
-      "label": "test:seo",
-      "detail": "Build and check for French SEO meta tags and content",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      }
-    },
-    {
-      "type": "shell",
-      "command": "cd src && npm run lint && cd ../backend && /Users/tobiaszbajek/.local/bin/poetry run black --check .",
-      "group": "test",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared",
-        "showReuseMessage": true,
-        "clear": false
-      },
-      "label": "lint:all",
-      "detail": "Run linting for both frontend and backend",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      }
-    },
-    {
-      "type": "shell",
-      "command": "cd backend && /Users/tobiaszbajek/.local/bin/poetry run python -m pytest",
-      "group": "test",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared",
-        "showReuseMessage": true,
-        "clear": false
-      },
-      "label": "test:backend",
-      "detail": "Run Python tests with pytest",
+      "label": "dev:all",
+      "detail": "Start both frontend (4000) and backend (4001) servers",
       "options": {
         "cwd": "${workspaceFolder}"
       }
