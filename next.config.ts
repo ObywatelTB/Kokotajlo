@@ -4,13 +4,6 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
 
 const nextConfig: NextConfig = {
-  // Internationalization settings
-  i18n: {
-    locales: ['fr', 'en'],
-    defaultLocale: 'fr',
-    localeDetection: true,
-  },
-
   // Environment variables
   env: {
     NEXT_PUBLIC_DEFAULT_LOCALE: 'fr',

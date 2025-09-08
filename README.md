@@ -125,6 +125,7 @@ cd backend && poetry run uvicorn main:app --host 0.0.0.0 --port $PORT
 - ✅ TypeScript throughout
 - ✅ ESLint + Prettier configuration
 - ✅ Poetry dependency management
+- ✅ UI: French content in app/. Hero pitches compliant AI for French market
 
 ## Usage
 

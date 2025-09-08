@@ -10,11 +10,11 @@ Our design system is crafted for French enterprise audiences, emphasizing trust,
 
 ### Primary Colors
 - **Primary Blue**: `#1E3A8A` (Trust, stability, French corporate blue)
-  - Usage: Primary buttons, links, headers
+  - Usage: Primary buttons, links, headers, hero text accents
   - Tailwind: `primary-blue` (extend theme)
 
 - **Accent Green**: `#10B981` (Growth, success, eco-friendly)
-  - Usage: Success states, secondary actions, growth indicators
+  - Usage: Success states, secondary actions, growth indicators, hero accents
   - Tailwind: `accent-green` (extend theme)
 
 ### Neutral Colors
@@ -22,6 +22,12 @@ Our design system is crafted for French enterprise audiences, emphasizing trust,
 - **Medium Gray**: `#6B7280` - Secondary text
 - **Light Gray**: `#F3F4F6` - Backgrounds, borders
 - **White**: `#FFFFFF` - Clean backgrounds
+
+### Gradient Colors
+- **Hero Background**: `bg-gradient-to-br from-blue-50 to-green-50`
+  - Blue-50: Very light blue for trust foundation
+  - Green-50: Very light green for growth accent
+  - Creates welcoming, professional atmosphere for enterprise visitors
 
 ### Semantic Colors
 - **Success**: `#10B981` (accent-green)
