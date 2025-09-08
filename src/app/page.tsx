@@ -1,4 +1,5 @@
 import CTAForm from '@/components/CTAForm';
+import InlineChat from '@/components/InlineChat';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
@@ -47,6 +48,11 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Inline expanding chat just below hero content */}
+          <div className="mt-10">
+            <InlineChat />
           </div>
         </div>
       </section>

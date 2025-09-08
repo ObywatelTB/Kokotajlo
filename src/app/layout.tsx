@@ -1,4 +1,3 @@
-import Chatbot from '@/components/Chatbot';
 import Header from '@/components/Header';
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -72,8 +71,8 @@ export default function RootLayout({
           {children}
         </main>
 
-        {/* Chatbot Widget */}
-        <Chatbot position="top-right" defaultOpen={true} />
+        {/* Chatbot Widget (disabled in favor of inline chat) */}
+        {/* <Chatbot position="top-right" defaultOpen={true} /> */}
 
         {/* Footer placeholder */}
         <footer className="border-t border-gray-200 mt-auto">
