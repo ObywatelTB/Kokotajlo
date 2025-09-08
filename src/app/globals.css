@@ -9,8 +9,41 @@
    ========================================================================== */
 
 :root {
+  /* Base surface tokens (light) */
+
   --background: #ffffff;
   --foreground: #171717;
+  --border: #e5e7eb; /* gray-200 */
+
+  /* Primary Blue Palette (light mode defaults) */
+  /* Anchor 500 at #1e40af as requested */
+  --primary-blue-50: #eef2ff;
+  --primary-blue-100: #e0e7ff;
+  --primary-blue-200: #c7d2fe;
+  --primary-blue-300: #a5b4fc;
+  --primary-blue-400: #818cf8;
+  --primary-blue-500: #1e40af;
+  --primary-blue-600: #1c3a99;
+  --primary-blue-700: #162f7a;
+  --primary-blue-800: #0f235c;
+  --primary-blue-900: #0a1a43;
+  /* Default on-primary content */
+  --primary-content: #ffffff;
+
+  /* Accent Green Palette (light mode defaults) */
+  /* Anchor 500 at #059669 */
+  --accent-green-50: #ecfdf5;
+  --accent-green-100: #d1fae5;
+  --accent-green-200: #a7f3d0;
+  --accent-green-300: #6ee7b7;
+  --accent-green-400: #34d399;
+  --accent-green-500: #059669;
+  --accent-green-600: #047857;
+  --accent-green-700: #065f46;
+  --accent-green-800: #064e3b;
+  --accent-green-900: #052e1f;
+  /* Default on-accent content */
+  --accent-content: #ffffff;
 }
 
 /* ==========================================================================
@@ -18,8 +51,40 @@
    ========================================================================== */
 
 @theme inline {
+  /* Surfaces */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-border: var(--border);
+
+  /* Primary (Blue) */
+  --color-primary: var(--primary-blue-500);
+  --color-primary-50: var(--primary-blue-50);
+  --color-primary-100: var(--primary-blue-100);
+  --color-primary-200: var(--primary-blue-200);
+  --color-primary-300: var(--primary-blue-300);
+  --color-primary-400: var(--primary-blue-400);
+  --color-primary-500: var(--primary-blue-500);
+  --color-primary-600: var(--primary-blue-600);
+  --color-primary-700: var(--primary-blue-700);
+  --color-primary-800: var(--primary-blue-800);
+  --color-primary-900: var(--primary-blue-900);
+  --color-primary-content: var(--primary-content);
+
+  /* Accent (Green) */
+  --color-accent: var(--accent-green-500);
+  --color-accent-50: var(--accent-green-50);
+  --color-accent-100: var(--accent-green-100);
+  --color-accent-200: var(--accent-green-200);
+  --color-accent-300: var(--accent-green-300);
+  --color-accent-400: var(--accent-green-400);
+  --color-accent-500: var(--accent-green-500);
+  --color-accent-600: var(--accent-green-600);
+  --color-accent-700: var(--accent-green-700);
+  --color-accent-800: var(--accent-green-800);
+  --color-accent-900: var(--accent-green-900);
+  --color-accent-content: var(--accent-content);
+
+  /* Fonts */
   --font-sans: var(--font-inter);
 }
 
@@ -29,9 +94,71 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    /* Surfaces (dark) */
     --background: #0a0a0a;
     --foreground: #ededed;
+    --border: #262626; /* gray-800 */
+
+    /* Primary Blue overrides (lighter tints for contrast on dark bg) */
+    --primary-blue-50: #1f2a44;
+    --primary-blue-100: #2a3a64;
+    --primary-blue-200: #33477f;
+    --primary-blue-300: #3b5398;
+    --primary-blue-400: #4f6dc2; /* approx blue-400/indigo-400 */
+    --primary-blue-500: #60a5fa; /* example given */
+    --primary-blue-600: #3b82f6; /* hover */
+    --primary-blue-700: #2563eb;
+    --primary-blue-800: #1d4ed8;
+    --primary-blue-900: #1e3a8a;
+    --primary-content: #0b1220; /* on light primary when used as bg in dark */
+
+    /* Accent Green overrides (slightly lighter mids for dark bg) */
+    --accent-green-50: #0e1f1a;
+    --accent-green-100: #123027;
+    --accent-green-200: #154036;
+    --accent-green-300: #185044;
+    --accent-green-400: #22c55e; /* emerald-500 */
+    --accent-green-500: #34d399; /* emerald-400 */
+    --accent-green-600: #10b981; /* hover */
+    --accent-green-700: #059669;
+    --accent-green-800: #047857;
+    --accent-green-900: #065f46;
+    --accent-content: #0b1a13;
   }
+}
+
+/* Optional explicit theme attribute support */
+[data-theme="dark"] {
+  /* Surfaces (dark) */
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --border: #262626; /* gray-800 */
+
+  /* Primary Blue overrides */
+  --primary-blue-50: #1f2a44;
+  --primary-blue-100: #2a3a64;
+  --primary-blue-200: #33477f;
+  --primary-blue-300: #3b5398;
+  --primary-blue-400: #4f6dc2;
+  --primary-blue-500: #60a5fa;
+  --primary-blue-600: #3b82f6;
+  --primary-blue-700: #2563eb;
+  --primary-blue-800: #1d4ed8;
+  --primary-blue-900: #1e3a8a;
+  --primary-content: #0b1220;
+
+  /* Accent Green overrides */
+  --accent-green-50: #0e1f1a;
+  --accent-green-100: #123027;
+  --accent-green-200: #154036;
+  --accent-green-300: #185044;
+  --accent-green-400: #22c55e;
+  --accent-green-500: #34d399;
+  --accent-green-600: #10b981;
+  --accent-green-700: #059669;
+  --accent-green-800: #047857;
+  --accent-green-900: #065f46;
+  --accent-content: #0b1a13;
 }
 
 /* ==========================================================================
@@ -42,4 +169,46 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ==========================================================================
+   Global Cursor Rules
+   ========================================================================== */
+
+/* Default cursor for non-interactive content */
+body {
+  cursor: default;
+}
+
+/* Pointer cursor for interactive elements */
+a,
+button,
+select,
+summary,
+input[type="button"],
+input[type="submit"],
+[role="button"] {
+  cursor: pointer;
+}
+
+/* Loading/wait states */
+.loading,
+[aria-busy="true"] {
+  cursor: wait;
+}
+
+/* Buttons utility cursor states */
+.btn {
+  cursor: pointer;
+}
+.btn:hover {
+  cursor: pointer;
+}
+.btn:disabled,
+.btn[aria-disabled="true"],
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
 }

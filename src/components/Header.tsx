@@ -21,12 +21,12 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+    <header className="bg-background shadow-md fixed top-0 left-0 right-0 z-50">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="text-2xl font-bold text-gray-900 hover:text-primary-blue transition-colors">
+            <Link href="/" className="text-2xl font-bold text-foreground hover:text-primary transition-colors">
               AI Agents FR
             </Link>
           </div>
@@ -38,7 +38,7 @@ const Header = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-700 hover:text-primary-blue px-3 py-2 text-sm font-medium transition-colors duration-200"
+                  className="text-foreground/80 hover:text-primary px-3 py-2 text-sm font-medium transition-colors duration-200"
                 >
                   {item.name}
                 </Link>
@@ -51,7 +51,7 @@ const Header = () => {
             {/* Language Toggle */}
             <button
               onClick={toggleLanguage}
-              className="hidden sm:inline-flex items-center px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-blue transition-colors"
+              className="hidden sm:inline-flex items-center px-3 py-2 border border-border rounded-md text-sm font-medium text-foreground bg-background hover:bg-foreground/5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors btn"
             >
               FR/EN
             </button>
@@ -60,7 +60,7 @@ const Header = () => {
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary-blue hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-blue"
+                className="inline-flex items-center justify-center p-2 rounded-md text-foreground hover:text-primary hover:bg-foreground/10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary btn"
                 aria-expanded="false"
               >
                 <span className="sr-only">Ouvrir le menu principal</span>
@@ -77,12 +77,12 @@ const Header = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-background border-t border-border">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-700 hover:text-primary-blue block px-3 py-2 text-base font-medium transition-colors duration-200"
+                  className="text-foreground/80 hover:text-primary block px-3 py-2 text-base font-medium transition-colors duration-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
@@ -91,7 +91,7 @@ const Header = () => {
               {/* Mobile Language Toggle */}
               <button
                 onClick={toggleLanguage}
-                className="w-full text-left text-gray-700 hover:text-primary-blue px-3 py-2 text-base font-medium transition-colors duration-200"
+                className="w-full text-left text-foreground/80 hover:text-primary px-3 py-2 text-base font-medium transition-colors duration-200 btn"
               >
                 FR/EN
               </button>

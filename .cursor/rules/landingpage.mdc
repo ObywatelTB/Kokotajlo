@@ -1,7 +1,209 @@
 ---
-description: 
-globs: 
+description: Landing page color system usage guide
+globs: ["src/**/*.{tsx,jsx,ts,js}", "src/app/globals.css"]
 alwaysApply: true
 ---
-# The landing page
+# Landing Page Color System
+
+## Overview
+This landing page uses a consistent color system built on CSS variables and Tailwind's `@theme` directive, supporting both light and dark modes automatically.
+
+## Core Color Palette
+
+### Primary Colors (Blue)
+- **Base**: `primary` (#1e40af in light, #60a5fa in dark)
+- **Shades**: `primary-50` through `primary-900`
+- **Content**: `primary-content` (white/light text on primary backgrounds)
+
+### Accent Colors (Green)
+- **Base**: `accent` (#059669 in light, #34d399 in dark)
+- **Shades**: `accent-50` through `accent-900`
+- **Content**: `accent-content` (white/light text on accent backgrounds)
+
+### Surface Colors
+- **Background**: `background` (page background)
+- **Foreground**: `foreground` (primary text color)
+- **Border**: `border` (subtle borders and dividers)
+
+## Button Usage Patterns
+
+### Filled Buttons (Primary Action)
+```tsx
+// Primary (blue) filled button
+className="bg-primary text-primary-content hover:bg-primary-600 btn"
+
+// Accent (green) filled button
+className="bg-accent text-accent-content hover:bg-accent-600 btn"
+```
+
+### Outlined Buttons (Secondary Action)
+```tsx
+// Outlined button that fills on hover
+className="bg-background text-primary border border-primary hover:bg-primary hover:text-primary-content btn"
+```
+
+### Button Best Practices
+- Always use `btn` class for consistent cursor behavior
+- Include `focus:ring-2 focus:ring-{color}-300 focus:ring-offset-2 focus:ring-offset-background` for accessibility
+- Use `hover:bg-{color}-600` for consistent hover states
+- Disable states: `disabled:bg-foreground/30 disabled:text-foreground/70 disabled:cursor-not-allowed`
+
+## Component Color Usage
+
+### Text Colors
+```tsx
+// Primary text (headings, important content)
+className="text-foreground"
+
+// Secondary text (descriptions, labels)
+className="text-foreground/70"
+
+// Muted text (captions, helper text)
+className="text-foreground/50"
+```
+
+### Background Colors
+```tsx
+// Main content areas
+className="bg-background"
+
+// Subtle sections (cards, panels)
+className="bg-foreground/5"
+
+// Interactive hover states
+className="hover:bg-foreground/10"
+```
+
+### Borders
+```tsx
+// Subtle borders
+className="border border-border"
+
+// Interactive borders
+className="border border-primary hover:border-primary-600"
+```
+
+## Form Elements
+
+### Input Fields
+```tsx
+className="border border-border bg-background text-foreground placeholder:text-foreground/50 focus:ring-2 focus:ring-accent-300 focus:border-transparent"
+```
+
+### Labels
+```tsx
+className="text-sm font-medium text-foreground"
+```
+
+## Dark Mode Support
+
+The color system automatically adapts to dark mode:
+
+- **Light mode**: Uses darker backgrounds with lighter text
+- **Dark mode**: Uses lighter backgrounds with darker text
+- **Automatic**: No manual `dark:` classes needed for basic usage
+
+For explicit dark mode overrides (rare):
+```tsx
+className="bg-primary-50 dark:bg-primary-900"
+```
+
+## Component-Specific Guidelines
+
+### Hero Section
+```tsx
+// Background gradient
+className="bg-gradient-to-br from-primary-50 to-accent-50 dark:from-primary-900 dark:to-accent-900"
+
+// Headings
+className="text-foreground"
+
+// Subheadings
+className="text-foreground/70"
+```
+
+### Cards and Panels
+```tsx
+className="bg-background border border-border rounded-lg shadow-sm"
+```
+
+### Navigation
+```tsx
+// Links
+className="text-foreground/80 hover:text-primary transition-colors"
+
+// Active states
+className="text-primary"
+```
+
+### Chat Components
+```tsx
+// User messages
+className="bg-primary text-primary-content"
+
+// Bot messages
+className="bg-foreground/5 text-foreground"
+
+// Loading states
+className="bg-foreground/10 text-foreground/70"
+```
+
+## Adding New Colors
+
+To extend the palette, update `src/app/globals.css`:
+
+1. Add CSS variables in `:root` and `[data-theme="dark"]`
+2. Add to `@theme inline` block
+3. Use semantic names (e.g., `success`, `warning`, `error`)
+
+Example:
+```css
+:root {
+  --success: #059669;
+  --success-content: #ffffff;
+}
+
+@theme inline {
+  --color-success: var(--success);
+  --color-success-content: var(--success-content);
+}
+```
+
+## Accessibility Notes
+
+- Always maintain 4.5:1 contrast ratio (WCAG AA)
+- Use `primary-content` and `accent-content` for text on colored backgrounds
+- Include focus states on all interactive elements
+- Test in both light and dark modes
+- Consider color-blind users when choosing color combinations
+
+## Migration Guide
+
+When updating existing components:
+
+1. Replace hardcoded colors:
+   - `text-gray-900` → `text-foreground`
+   - `bg-white` → `bg-background`
+   - `bg-primary-blue` → `bg-primary`
+   - `text-accent-green` → `text-accent`
+
+2. Add `btn` class to all buttons
+
+3. Update focus states with ring offsets
+
+4. Test in both light and dark modes
+
+## Troubleshooting
+
+**White-on-white text?**
+- Ensure you're using `text-foreground` for body text
+- Use `*-content` variants on colored backgrounds
+
+**Colors not updating in dark mode?**
+- Check that elements use CSS variable classes (`bg-background`, etc.)
+- Avoid hardcoded Tailwind colors like `bg-white`
+
+**Hover states not working?**
+- Ensure `hover:` states use theme colors
+- Add `transition-colors duration-200` for smooth transitions
 

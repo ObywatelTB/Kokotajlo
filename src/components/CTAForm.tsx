@@ -28,25 +28,25 @@ const CTAForm = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-xl p-8 max-w-md mx-auto">
-      <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+    <div className="bg-background rounded-lg shadow-xl p-8 max-w-md mx-auto">
+      <h3 className="text-2xl font-semibold text-foreground mb-6">
         Demande de Contact
       </h3>
 
       {isSubmitted ? (
         <div className="text-center py-8">
-          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="w-16 h-16 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg className="w-8 h-8 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <h4 className="text-lg font-semibold text-gray-900 mb-2">Demande envoyée !</h4>
-          <p className="text-gray-600">Nous vous contacterons bientôt pour discuter de votre projet.</p>
+          <h4 className="text-lg font-semibold text-foreground mb-2">Demande envoyée !</h4>
+          <p className="text-foreground/70">Nous vous contacterons bientôt pour discuter de votre projet.</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
               Email professionnel
             </label>
             <input
@@ -55,14 +55,14 @@ const CTAForm = () => {
               name="email"
               required
               disabled={isSubmitting}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-green focus:border-transparent transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+              className="w-full px-4 py-3 border border-border rounded-lg bg-background text-foreground placeholder:text-foreground/50 focus:ring-2 focus:ring-accent-300 focus:border-transparent transition-colors disabled:bg-foreground/5 disabled:text-foreground/50 disabled:cursor-not-allowed"
               placeholder="votre.email@entreprise.fr"
             />
           </div>
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-accent-green hover:bg-green-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+            className="w-full bg-accent text-accent-content hover:bg-accent-600 disabled:bg-foreground/30 disabled:text-foreground/70 disabled:cursor-not-allowed font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-accent-300 focus:ring-offset-2 focus:ring-offset-background btn"
           >
             {isSubmitting ? (
               <div className="flex items-center justify-center">
@@ -76,7 +76,7 @@ const CTAForm = () => {
         </form>
       )}
 
-      <p className="text-sm text-gray-500 mt-4">
+      <p className="text-sm text-foreground/60 mt-4">
         Nous respectons votre confidentialité et ne partageons jamais vos données.
       </p>
     </div>

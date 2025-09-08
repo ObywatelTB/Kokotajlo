@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="h-screen bg-gradient-to-br from-blue-50 to-green-50 flex items-center justify-center px-4">
+      <section className="h-screen bg-gradient-to-br from-primary-50 to-accent-50 dark:from-primary-900 dark:to-accent-900 flex items-center justify-center px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
             Agents IA Conformes pour les Entreprises Françaises
@@ -26,14 +26,14 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
             <Link
               href="/services"
-              className="inline-flex items-center px-8 py-4 bg-accent-green text-white font-semibold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 shadow-md hover:shadow-lg transition-all duration-200"
+              className="inline-flex items-center px-8 py-4 bg-accent text-accent-content font-semibold rounded-lg hover:bg-accent-600 focus:outline-none focus:ring-2 focus:ring-accent-300 focus:ring-offset-2 focus:ring-offset-background shadow-md hover:shadow-lg transition-all duration-200 btn"
             >
               Découvrir Nos Services
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center px-8 py-4 bg-white text-primary-blue border-2 border-primary-blue font-semibold rounded-lg hover:bg-primary-blue hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-300 transition-colors duration-200"
+              className="inline-flex items-center px-8 py-4 bg-background text-primary border-2 border-primary font-semibold rounded-lg hover:bg-primary hover:text-primary-content focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 focus:ring-offset-background transition-colors duration-200 btn"
             >
               Discuter Partenariat
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -138,7 +138,7 @@ export default function Home() {
           <div className="text-center">
             <Link
               href="/contact"
-              className="inline-block bg-accent-green hover:bg-green-600 text-white font-semibold px-8 py-4 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+              className="inline-block bg-accent text-accent-content hover:bg-accent-600 font-semibold px-8 py-4 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl btn"
             >
               Proposer un Pilote
             </Link>
