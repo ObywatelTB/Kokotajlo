@@ -153,6 +153,60 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4 bg-primary-blue">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold text-white mb-6">
+            Partenariat avec Kokotajlo
+          </h2>
+          <p className="text-xl text-blue-100 mb-12 max-w-2xl mx-auto">
+            Contactez-nous pour un pilote personnalisé. Ensemble, révolutionnons votre entreprise
+            avec des agents IA conformes et performants.
+          </p>
+
+          {/* CTA Form */}
+          <div className="bg-white rounded-lg shadow-xl p-8 max-w-md mx-auto">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+              Demande de Contact
+            </h3>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target as HTMLFormElement);
+                const email = formData.get('email');
+                console.log('CTA Form submitted with email:', email);
+                alert('Merci ! Nous vous contacterons bientôt.');
+                (e.target as HTMLFormElement).reset();
+              }}
+              className="space-y-4"
+            >
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  Email professionnel
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-green focus:border-transparent transition-colors"
+                  placeholder="votre.email@entreprise.fr"
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-accent-green hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+              >
+                Envoyer Demande
+              </button>
+            </form>
+            <p className="text-sm text-gray-500 mt-4">
+              Nous respectons votre confidentialité et ne partageons jamais vos données.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
