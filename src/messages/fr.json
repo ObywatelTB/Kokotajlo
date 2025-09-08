@@ -1,0 +1,79 @@
+{
+  "hero": {
+    "title": "Agents IA Conformes pour Entreprises Françaises",
+    "subtitle": "Automatisation intelligente et sécurisée avec conformité RGPD et IA Act",
+    "description": "Transformez vos processus métier avec des agents IA locaux, fiables et conformes aux réglementations européennes.",
+    "cta_primary": "Commencer l'essai gratuit",
+    "cta_secondary": "Voir les démos"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "services": "Services",
+    "about": "À propos",
+    "contact": "Contact",
+    "language": "Langue"
+  },
+  "services": {
+    "title": "Nos Services IA",
+    "automation": {
+      "title": "Automatisation des Processus",
+      "description": "Automatisez vos workflows complexes avec des agents IA intelligents et conformes."
+    },
+    "iot": {
+      "title": "Intégration IoT",
+      "description": "Connectez vos appareils IoT avec des agents IA pour une prise de décision en temps réel."
+    },
+    "compliance": {
+      "title": "Conformité RGPD",
+      "description": "Solutions IA entièrement conformes aux réglementations européennes sur la protection des données."
+    },
+    "local": {
+      "title": "LLM Locaux",
+      "description": "Utilisez des modèles de langage hébergés en France pour une souveraineté des données."
+    }
+  },
+  "about": {
+    "title": "À Propos de Kokotajlo",
+    "mission": "Notre mission est de démocratiser l'IA pour les entreprises françaises tout en garantissant la conformité et la sécurité.",
+    "values": {
+      "compliance": "Conformité d'abord",
+      "security": "Sécurité des données",
+      "innovation": "Innovation responsable",
+      "local": "Souveraineté numérique"
+    }
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Prêt à transformer votre entreprise avec l'IA ?",
+    "form": {
+      "name": "Nom complet",
+      "email": "Adresse e-mail",
+      "company": "Entreprise",
+      "message": "Message",
+      "submit": "Envoyer le message"
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 Kokotajlo. Tous droits réservés.",
+    "links": {
+      "privacy": "Politique de confidentialité",
+      "terms": "Conditions d'utilisation",
+      "support": "Support"
+    }
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "success": "Opération réussie",
+    "retry": "Réessayer",
+    "close": "Fermer",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "learn_more": "En savoir plus"
+  },
+  "seo": {
+    "meta_title": "Kokotajlo - Agents IA Conformes pour Entreprises Françaises",
+    "meta_description": "Plateforme d'agents IA conformes RGPD pour entreprises françaises. Automatisation intelligente, IoT, et souveraineté des données.",
+    "keywords": "agents IA entreprise France, automatisation RGPD, IA conformité, LLM locaux, IoT intelligence artificielle"
+  }
+}
