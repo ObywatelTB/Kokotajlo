@@ -1,5 +1,19 @@
 {
   "version": "0.2.0",
+  "compounds": [
+    {
+      "name": "Launch Full Stack",
+      "configurations": ["Next.js: debug full stack", "FastAPI: debug server"],
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "group": "",
+        "order": 1
+      }
+    }
+  ],
   "configurations": [
     {
       "name": "Next.js: debug server-side",

@@ -102,6 +102,78 @@
       "options": {
         "cwd": "${workspaceFolder}"
       }
+    },
+    {
+      "type": "shell",
+      "command": "cd src && npm run build && npx serve -s build -l 3001",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "label": "deploy:preview",
+      "detail": "Build and serve Next.js statically to simulate Railway deployment",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "type": "shell",
+      "command": "cd src && npm run build && echo 'Checking SEO meta tags...' && grep -r 'Kokotajlo' build/ | head -10",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "label": "test:seo",
+      "detail": "Build and check for French SEO meta tags and content",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "type": "shell",
+      "command": "cd src && npm run lint && cd ../backend && /Users/tobiaszbajek/.local/bin/poetry run black --check .",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "label": "lint:all",
+      "detail": "Run linting for both frontend and backend",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "type": "shell",
+      "command": "cd backend && /Users/tobiaszbajek/.local/bin/poetry run python -m pytest",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "label": "test:backend",
+      "detail": "Run Python tests with pytest",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
     }
   ]
 }

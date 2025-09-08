@@ -1,6 +1,6 @@
 # Kokotajlo
 
-AI Agents FR Landing - French site for compliant enterprise AI.
+Building enterprise AI agents for France. Site showcases compliant local LLMs for automation/IoT. French UI for market fit.
 
 ## Overview
 
@@ -11,7 +11,7 @@ Kokotajlo is a monorepo project consisting of:
 
 ## Tech Stack
 
-- **Frontend**: Next.js 15+, TypeScript, Tailwind CSS, ESLint
+- **Frontend**: Next.js 15+, TypeScript, Tailwind CSS, ESLint, next-intl
 - **Backend**: FastAPI, Python 3.9+, Poetry, OpenAI API
 - **Deployment**: Railway (recommended)
 - **Version Control**: Git, GitHub
@@ -27,21 +27,20 @@ Kokotajlo is a monorepo project consisting of:
 
 ```bash
 # Install frontend dependencies
-npm install
+cd src && npm install
 
 # Install backend dependencies
-cd backend
-poetry install
+cd backend && pip install -r requirements.txt
 ```
 
 ### Development
 
 ```bash
 # Frontend (port 3000)
-npm run dev
+cd src && npm run dev
 
 # Backend (port 8000)
-cd backend && poetry run uvicorn main:app --reload --host 0.0.0.0 --port 8000
+cd backend && uvicorn main:app --reload
 ```
 
 ### Environment Setup
@@ -62,14 +61,20 @@ cd backend && poetry run uvicorn main:app --reload --host 0.0.0.0 --port 8000
 /kokotajlo/
 ├── src/                          # Next.js frontend
 │   ├── app/                      # App router pages
-│   └── components/               # Reusable components
+│   ├── components/               # Reusable components
+│   └── messages/                 # i18n messages
 ├── backend/                      # FastAPI backend
 │   ├── main.py                   # FastAPI application
 │   └── pyproject.toml            # Poetry dependencies
 ├── docs/                         # English documentation
+│   ├── README.md                 # Main docs
+│   ├── styles.md                 # Design system
+│   ├── railway.md                # Deployment guide
+│   └── n8n.md                    # Workflow integration
 ├── .vscode/                      # VSCode configuration
 │   ├── tasks.json                # Development tasks
-│   └── launch.json               # Debug configurations
+│   ├── launch.json               # Debug configurations
+│   └── settings.json             # Workspace settings
 └── README.md                     # This file
 ```
 
@@ -82,6 +87,8 @@ Use VSCode tasks for streamlined development:
 - `lint:frontend` - Run ESLint on frontend code
 - `lint:backend` - Format Python code with Black
 - `build:frontend` - Build Next.js for production
+- `deploy:preview` - Simulate Railway deployment
+- `test:seo` - Check SEO meta tags
 
 ## API Endpoints
 
@@ -118,6 +125,10 @@ cd backend && poetry run uvicorn main:app --host 0.0.0.0 --port $PORT
 - ✅ TypeScript throughout
 - ✅ ESLint + Prettier configuration
 - ✅ Poetry dependency management
+
+## Usage
+
+Edit French content in app/. Test chatbot proxy. SEO: French keywords like "agents IA entreprise GDPR".
 
 ## Roadmap
 
