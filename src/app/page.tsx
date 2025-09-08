@@ -1,6 +1,6 @@
+import CTAForm from '@/components/CTAForm';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import CTAForm from '@/components/CTAForm';
 
 export default function Home() {
   return (
