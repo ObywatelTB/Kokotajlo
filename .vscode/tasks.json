@@ -2,6 +2,26 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "dev:all",
+      "detail": "Start both frontend (4000) and backend (4001) servers",
+      "type": "shell",
+      "command": "npm run dev & cd backend && /Users/tobiaszbajek/.local/bin/poetry run uvicorn main:app --reload --host 0.0.0.0 --port 4001",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "dev:frontend",
+      "detail": "Start Next.js frontend on port 4000",
       "type": "npm",
       "script": "dev",
       "group": {
@@ -16,10 +36,10 @@
         "showReuseMessage": true,
         "clear": false
       },
-      "label": "dev:frontend",
-      "detail": "Start Next.js frontend on port 4000"
     },
     {
+      "label": "dev:backend",
+      "detail": "Start FastAPI backend on port 4001",
       "type": "shell",
       "command": "cd backend && /Users/tobiaszbajek/.local/bin/poetry run uvicorn main:app --reload --host 0.0.0.0 --port 4001",
       "group": "build",
@@ -31,26 +51,6 @@
         "showReuseMessage": true,
         "clear": false
       },
-      "label": "dev:backend",
-      "detail": "Start FastAPI backend on port 4001",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      }
-    },
-    {
-      "type": "shell",
-      "command": "npm run dev & cd backend && /Users/tobiaszbajek/.local/bin/poetry run uvicorn main:app --reload --host 0.0.0.0 --port 4001",
-      "group": "build",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared",
-        "showReuseMessage": true,
-        "clear": false
-      },
-      "label": "dev:all",
-      "detail": "Start both frontend (4000) and backend (4001) servers",
       "options": {
         "cwd": "${workspaceFolder}"
       }
