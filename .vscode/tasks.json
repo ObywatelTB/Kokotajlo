@@ -1,0 +1,107 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "dev",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "label": "dev:frontend",
+      "detail": "npm run dev - Start Next.js development server"
+    },
+    {
+      "type": "shell",
+      "command": "cd backend && /Users/tobiaszbajek/.local/bin/poetry run uvicorn main:app --reload --host 0.0.0.0 --port 8000",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "label": "dev:backend",
+      "detail": "Start FastAPI development server with Poetry",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "type": "npm",
+      "script": "lint",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "label": "lint:frontend",
+      "detail": "npm run lint - Run ESLint on frontend code"
+    },
+    {
+      "type": "shell",
+      "command": "cd backend && /Users/tobiaszbajek/.local/bin/poetry run black .",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "label": "lint:backend",
+      "detail": "Format Python code with Black",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "type": "npm",
+      "script": "build",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "label": "build:frontend",
+      "detail": "npm run build - Build Next.js for production"
+    },
+    {
+      "type": "shell",
+      "command": "cd backend && /Users/tobiaszbajek/.local/bin/poetry run uvicorn main:app --host 0.0.0.0 --port 8000",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "label": "build:backend",
+      "detail": "Start FastAPI production server",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    }
+  ]
+}

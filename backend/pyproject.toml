@@ -1,0 +1,22 @@
+[project]
+name = "kokotajlo-backend"
+version = "0.1.0"
+description = "FastAPI backend for AI agent landing page"
+authors = [
+    {name = "ObywatelTB",email = "tobiasz@example.com"}
+]
+readme = "README.md"
+requires-python = "^3.9"
+dependencies = [
+    "fastapi (>=0.116.1,<0.117.0)",
+    "uvicorn (>=0.35.0,<0.36.0)",
+    "openai (>=1.106.1,<2.0.0)",
+    "slowapi (>=0.1.9,<0.2.0)",
+    "httpx (>=0.28.1,<0.29.0)",
+    "python-dotenv (>=1.1.1,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
