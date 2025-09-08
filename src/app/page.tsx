@@ -17,42 +17,27 @@ export default function Home() {
             Automatisez vos processus industriels et IoT avec efficacité.
           </p>
 
+          {/* Inline expanding chat just below hero subheader */}
+          <div className="mt-6">
+            <InlineChat />
+          </div>
+
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
             <Link
               href="/services"
-              className="inline-flex items-center px-8 py-4 bg-accent-green text-white font-semibold rounded-lg hover:bg-green-600 transition-colors duration-200 group"
+              className="inline-flex items-center px-8 py-4 bg-accent-green text-white font-semibold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 shadow-md hover:shadow-lg transition-all duration-200"
             >
               Découvrir Nos Services
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center px-8 py-4 border-2 border-primary-blue text-primary-blue font-semibold rounded-lg hover:bg-primary-blue hover:text-white transition-colors duration-200 group"
+              className="inline-flex items-center px-8 py-4 bg-white text-primary-blue border-2 border-primary-blue font-semibold rounded-lg hover:bg-primary-blue hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-300 transition-colors duration-200"
             >
               Discuter Partenariat
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
-          </div>
-
-          {/* Placeholder for AI network image */}
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-white/50 backdrop-blur-sm border border-gray-200 rounded-xl p-8 shadow-lg">
-              <div className="aspect-video bg-gradient-to-r from-primary-blue/20 to-accent-green/20 rounded-lg flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-24 h-24 bg-primary-blue/30 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-4xl">🤖</span>
-                  </div>
-                  <p className="text-gray-600 font-medium">Réseau d'agents IA conformes</p>
-                  <p className="text-sm text-gray-500 mt-1">Visualisation interactive à venir</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Inline expanding chat just below hero content */}
-          <div className="mt-10">
-            <InlineChat />
           </div>
         </div>
       </section>
