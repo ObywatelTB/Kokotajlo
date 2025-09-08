@@ -9,9 +9,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Kokotajlo - Agents IA pour Entreprises Françaises",
-  description: "Plateforme d'agents IA conformes pour entreprises françaises. Solutions d'automatisation intelligente et sécurisée.",
-  keywords: ["IA", "agents", "automatisation", "entreprises", "France", "intelligence artificielle"],
+  title: "Agents IA Conformes GDPR | Kokotajlo pour Entreprises FR",
+  description: "Solutions IA locale RAG MCP pour automation industrielle. Conformité AI Act. Pilotes sur mesure en France.",
+  keywords: ["agents IA France", "GDPR AI", "RAG MCP entreprise", "IA conformes", "automatisation industrielle"],
   authors: [{ name: "ObywatelTB" }],
   creator: "ObywatelTB",
   publisher: "Kokotajlo",
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Kokotajlo - Agents IA pour Entreprises Françaises",
-    description: "Plateforme d'agents IA conformes pour entreprises françaises. Solutions d'automatisation intelligente et sécurisée.",
+    title: "Agents IA Conformes GDPR | Kokotajlo pour Entreprises FR",
+    description: "Solutions IA locale RAG MCP pour automation industrielle. Conformité AI Act. Pilotes sur mesure en France.",
     url: '/',
     siteName: 'Kokotajlo',
     locale: 'fr_FR',
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Kokotajlo - Agents IA pour Entreprises Françaises",
-    description: "Plateforme d'agents IA conformes pour entreprises françaises.",
+    title: "Agents IA Conformes GDPR | Kokotajlo pour Entreprises FR",
+    description: "Solutions IA locale RAG MCP pour automation industrielle. Conformité AI Act. Pilotes sur mesure en France.",
     creator: '@kokotajlo',
   },
   robots: {

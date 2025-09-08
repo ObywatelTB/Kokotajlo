@@ -28,6 +28,7 @@ Our design system is crafted for French enterprise audiences, emphasizing trust,
   - Blue-50: Very light blue for trust foundation
   - Green-50: Very light green for growth accent
   - Creates welcoming, professional atmosphere for enterprise visitors
+  - Hero: Gradient blue-50 to green-50 for enterprise trust; About: 2-col grid responsive
 
 ### Semantic Colors
 - **Success**: `#10B981` (accent-green)
