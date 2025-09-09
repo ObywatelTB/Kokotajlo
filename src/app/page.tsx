@@ -13,7 +13,7 @@ export default function Home() {
             Agents IA Conformes pour les Entreprises Françaises
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Découvrez nos solutions d'IA locale avec LLMs, RAG et MCP – Prêtes pour l'AI Act et GDPR.
+            Découvrez nos solutions d&apos;IA locale avec LLMs, RAG et MCP – Prêtes pour l&apos;AI Act et GDPR.
             Automatisez vos processus industriels et IoT avec efficacité.
           </p>
 
@@ -54,8 +54,8 @@ export default function Home() {
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-xl shadow-sm">
               <h3 className="text-2xl font-semibold text-primary-blue mb-4">Tobias Bajek</h3>
               <p className="text-gray-700 leading-relaxed">
-                Ingénieur logiciel polonais expérimenté, passionné par l'IA scalable.
-                Expert en architectures de systèmes distribués et en développement d'agents IA conformes aux réglementations européennes.
+                Ingénieur logiciel polonais expérimenté, passionné par l&apos;IA scalable.
+                Expert en architectures de systèmes distribués et en développement d&apos;agents IA conformes aux réglementations européennes.
               </p>
             </div>
 
@@ -63,7 +63,7 @@ export default function Home() {
             <div className="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-xl shadow-sm">
               <h3 className="text-2xl font-semibold text-accent-green mb-4">Mengran Zhao</h3>
               <p className="text-gray-700 leading-relaxed">
-                Développeuse d'affaires chinoise de 33 ans, experte en marchés internationaux.
+                Développeuse d&apos;affaires chinoise de 33 ans, experte en marchés internationaux.
                 Spécialiste en expansion commerciale et en relations avec les entreprises européennes.
               </p>
             </div>
@@ -75,8 +75,8 @@ export default function Home() {
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">Notre Mission</h3>
               <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
                 Duo polono-chinois créant des agents IA pour remplacer les tâches humaines dans les grandes entreprises françaises –
-                Premier pilote personnalisé, puis scaling. Nous combinons l'expertise technique européenne avec l'agilité commerciale asiatique
-                pour offrir des solutions d'IA véritablement conformes et efficaces.
+                Premier pilote personnalisé, puis scaling. Nous combinons l&apos;expertise technique européenne avec l&apos;agilité commerciale asiatique
+                pour offrir des solutions d&apos;IA véritablement conformes et efficaces.
               </p>
             </div>
           </div>
@@ -100,8 +100,8 @@ export default function Home() {
                 Agents IA Locaux
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                LLMs hébergés en local pour sécurité et performance. RAG pour données d'entreprise sécurisées.
-                Protégez vos informations sensibles tout en bénéficiant d'une IA puissante et personnalisée.
+                LLMs hébergés en local pour sécurité et performance. RAG pour données d&apos;entreprise sécurisées.
+                Protégez vos informations sensibles tout en bénéficiant d&apos;une IA puissante et personnalisée.
               </p>
             </div>
 
@@ -115,7 +115,7 @@ export default function Home() {
               </h3>
               <p className="text-gray-600 leading-relaxed">
                 Extension IoT avec raisonnement IA – Remplacez les tâches humaines dans vending/manufacturing.
-                Optimisez vos processus industriels avec des agents intelligents qui apprennent et s'adaptent.
+                Optimisez vos processus industriels avec des agents intelligents qui apprennent et s&apos;adaptent.
               </p>
             </div>
 

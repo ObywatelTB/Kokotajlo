@@ -2,10 +2,12 @@
 
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const navigation = [
     { name: 'Accueil', href: '/' },
@@ -14,6 +16,13 @@ const Header = () => {
     { name: 'Ressources', href: '/resources' },
     { name: 'Contact', href: '/contact' },
   ];
+
+  const isActive = (href: string) => {
+    if (href === '/') {
+      return pathname === '/';
+    }
+    return pathname.startsWith(href);
+  };
 
   const toggleLanguage = () => {
     // TODO: Implement next-intl language switching
@@ -38,7 +47,11 @@ const Header = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-foreground/80 hover:text-primary px-3 py-2 text-sm font-medium transition-colors duration-200"
+                  className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                    isActive(item.href)
+                      ? 'text-primary border-b-2 border-primary'
+                      : 'text-foreground/80 hover:text-primary'
+                  }`}
                 >
                   {item.name}
                 </Link>
@@ -82,7 +95,11 @@ const Header = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-foreground/80 hover:text-primary block px-3 py-2 text-base font-medium transition-colors duration-200"
+                  className={`block px-3 py-2 text-base font-medium transition-colors duration-200 ${
+                    isActive(item.href)
+                      ? 'text-primary bg-primary-50 border-r-4 border-primary'
+                      : 'text-foreground/80 hover:text-primary'
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}

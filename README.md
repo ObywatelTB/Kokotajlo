@@ -2,6 +2,13 @@
 
 Building enterprise AI agents for France. Site showcases compliant local LLMs for automation/IoT. French UI for market fit.
 
+```bash
+files-to-prompt  . \
+   -o llm-data/concat.txt \
+   -e .py -e .tsx -e .ts -e .css \
+   --ignore node_modules
+```
+
 ## Overview
 
 Kokotajlo is a monorepo project consisting of:
@@ -61,7 +68,16 @@ cd backend && uvicorn main:app --reload
 /kokotajlo/
 ├── src/                          # Next.js frontend
 │   ├── app/                      # App router pages
+│   │   ├── about/                # About page
+│   │   ├── contact/              # Contact page
+│   │   ├── resources/            # Resources page
+│   │   ├── services/             # Services page
+│   │   ├── layout.tsx            # Root layout with Header/Footer
+│   │   └── page.tsx              # Home page
 │   ├── components/               # Reusable components
+│   │   ├── Footer.tsx            # Site footer
+│   │   ├── Header.tsx            # Site header with navigation
+│   │   └── ...
 │   └── messages/                 # i18n messages
 ├── backend/                      # FastAPI backend
 │   ├── main.py                   # FastAPI application
@@ -70,7 +86,8 @@ cd backend && uvicorn main:app --reload
 │   ├── README.md                 # Main docs
 │   ├── styles.md                 # Design system
 │   ├── railway.md                # Deployment guide
-│   └── n8n.md                    # Workflow integration
+│   ├── n8n.md                    # Workflow integration
+│   └── subpages.md               # Subpages documentation
 ├── .vscode/                      # VSCode configuration
 │   ├── tasks.json                # Development tasks
 │   ├── launch.json               # Debug configurations
@@ -128,6 +145,9 @@ cd backend && poetry run uvicorn main:app --host 0.0.0.0 --port $PORT
 - ✅ UI: French content in app/. Hero/About/Services/CTA: French pitch for compliant AI agents; run dev:frontend to view.
 - ✅ Chatbot: Widget + /chat endpoint for witty project Q&A; CTA form for leads.
 - ✅ Backend: FastAPI with OpenAI GPT-4o-mini integration, Kokotajlo system prompt, Pydantic models, CORS for localhost:4000, rate limiting.
+- ✅ Footer: French links/GDPR; Subpages: Stubs for full navigation. Run dev:frontend to test routes.
+- ✅ Navigation: Active state highlighting for current page
+- ✅ Subpages: /about, /services, /resources, /contact with French content and SEO
 
 ## Usage
 

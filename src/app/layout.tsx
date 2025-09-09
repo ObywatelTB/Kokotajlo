@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -74,14 +75,8 @@ export default function RootLayout({
         {/* Chatbot Widget (disabled in favor of inline chat) */}
         {/* <Chatbot position="top-right" defaultOpen={true} /> */}
 
-        {/* Footer placeholder */}
-        <footer className="border-t border-gray-200 mt-auto">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="text-center text-sm text-gray-500">
-              <p>&copy; 2024 Kokotajlo. Tous droits réservés.</p>
-            </div>
-          </div>
-        </footer>
+        {/* Footer */}
+        <Footer />
       </body>
     </html>
   );

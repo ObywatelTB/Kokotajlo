@@ -56,7 +56,7 @@ const InlineChat = () => {
       const data = await res.json();
       const botText = data.response || data.message || "Désolé, je n'ai pas pu répondre.";
       setMessages(prev => prev.filter(m => m.role !== 'loading').concat({ id: `b-${Date.now()}`, role: 'bot', content: botText }));
-    } catch (err) {
+    } catch {
       setMessages(prev => prev.filter(m => m.role !== 'loading').concat({ id: `e-${Date.now()}`, role: 'error', content: "Oups, réessayez !" }));
     } finally {
       setIsSending(false);
