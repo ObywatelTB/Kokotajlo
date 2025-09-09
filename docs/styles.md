@@ -183,6 +183,14 @@ module.exports = {
 }
 ```
 
+## Light/Dark Mode Considerations
+
+- **Theme-Aware Classes**: Use `bg-background`, `text-foreground`, `border-border` instead of hardcoded `bg-white`/`text-gray-900` for automatic light/dark adaptation
+- **Explicit Dark Overrides**: Use `dark:` prefix (e.g., `text-white dark:text-black`) when you need different behavior than automatic theme switching
+- **Content Colors**: Use `*-content` variants (e.g., `text-primary-content`) for text on colored backgrounds to ensure proper contrast
+- **Background Transparency**: Use `bg-background/90` with `backdrop-blur-sm` instead of `bg-white/80` for theme-aware semi-transparent overlays
+- **Hover States**: Include both light and dark hover variants (e.g., `hover:text-primary-200 dark:hover:text-primary-800`) for consistent interaction feedback
+
 ## French Language Considerations
 
 - **Character Support**: Inter font includes all French characters including accents

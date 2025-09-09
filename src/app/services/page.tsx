@@ -27,7 +27,7 @@ export default function ServicesPage() {
             <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
               Solutions sur mesure pour grandes entreprises françaises
             </p>
-            <div className="mt-8 p-6 bg-white/80 backdrop-blur-sm rounded-lg border border-primary-200">
+            <div className="mt-8 p-6 bg-background/90 backdrop-blur-sm rounded-lg border border-border">
               <p className="text-lg text-foreground/80">
                 Agents IA conformes pour automatisation industrielle et IoT
               </p>
@@ -181,7 +181,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Diagram Placeholder */}
-          <div className="bg-white rounded-lg border border-border p-8 shadow-sm">
+          <div className="bg-background rounded-lg border border-border p-8 shadow-sm">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
               {/* Data Sources */}
               <div className="text-center">

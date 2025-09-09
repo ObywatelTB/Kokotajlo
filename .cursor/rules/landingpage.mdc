@@ -50,6 +50,20 @@ className="bg-background text-primary border border-primary hover:bg-primary hov
 
 ## Component Color Usage
 
+## Light/Dark Mode Practical Insights
+
+**Theme-Aware Classes**: Always prefer `bg-background`, `text-foreground`, `border-border` over hardcoded colors like `bg-white` or `text-gray-900` for automatic light/dark adaptation.
+
+**Explicit Dark Overrides**: Use `dark:` prefix (e.g., `text-white dark:text-black`) when you need different behavior than automatic theme switching, like when footer text should be black in dark mode despite the dark background.
+
+**Content Colors for Contrast**: Use `*-content` variants (e.g., `text-primary-content`) for text on colored backgrounds to ensure proper contrast ratios in both light and dark modes.
+
+**Theme-Aware Transparency**: Replace `bg-white/80` with `bg-background/90` combined with `backdrop-blur-sm` for overlays that work properly in both themes.
+
+**Hover State Consistency**: Include both light and dark hover variants (e.g., `hover:text-primary-200 dark:hover:text-primary-800`) to maintain consistent interaction feedback across themes.
+
+
+
 ### Text Colors
 ```tsx
 // Primary text (headings, important content)
