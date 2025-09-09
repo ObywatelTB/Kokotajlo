@@ -86,13 +86,5 @@
         }
       }
     }
-  },
-  "build": {
-    "builder": "NIXPACKS"
-  },
-  "deploy": {
-    "startCommand": "echo 'Multi-service deployment managed by deploy.js script'",
-    "healthcheckPath": "/",
-    "healthcheckTimeout": 300
   }
 }
