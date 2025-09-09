@@ -7,13 +7,81 @@
     "contact": "Contact"
   },
   "hero": {
-    "title": "Compliant AI Agents for French Businesses",
-    "subtitle": "Local solutions with LLMs, RAG and MCP – Ready for AI Act and GDPR",
+    "title": "GDPR Compliant AI Agents for French Enterprises",
+    "subtitle": "Local LLM solutions with RAG and MCP – Ready for AI Act and GDPR",
     "cta_primary": "Discover Our Services",
     "cta_secondary": "Discuss Partnership"
   },
+  "services": {
+    "title": "Our AI Agent Services",
+    "subtitle": "Custom solutions for major French enterprises",
+    "local_llms": {
+      "title": "Local AI Agents",
+      "description": "Secure hosting, RAG for sensitive data – GDPR-ready",
+      "features": [
+        "Secure local infrastructure",
+        "RAG for confidential processing",
+        "End-to-end encryption",
+        "Data sovereignty"
+      ]
+    },
+    "iot_automation": {
+      "title": "IoT Extension with Reasoning",
+      "description": "Integrate LLMs in industrial devices (ex: vending machines) for autonomous tasks",
+      "features": [
+        "IoT equipment connection",
+        "Real-time reasoning",
+        "Predictive maintenance",
+        "Energy optimization"
+      ]
+    },
+    "compliance_pilots": {
+      "title": "Compliance and Deployment",
+      "description": "Integrated AI Act; First pilot: €200k + 10-15% shares for 6-12m runway",
+      "features": [
+        "Integrated AI Act compliance",
+        "Complete auditability",
+        "Decision traceability",
+        "Equity-friendly models"
+      ]
+    },
+    "process": {
+      "title": "Our Process",
+      "subtitle": "A methodical approach to transform your business with artificial intelligence",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Audit",
+          "description": "Analysis of your processes and identification of AI opportunities"
+        },
+        {
+          "number": "2",
+          "title": "Design",
+          "description": "Architecture and development of custom pilot"
+        },
+        {
+          "number": "3",
+          "title": "Test",
+          "description": "Validation and optimization in controlled environment"
+        },
+        {
+          "number": "4",
+          "title": "Deployment",
+          "description": "Production deployment with support and guidance"
+        }
+      ]
+    },
+    "proposal": {
+      "title": "Pilot Proposal",
+      "subtitle": "Contact us for customization (sectorial automation)",
+      "cta_primary": "Request Quote",
+      "cta_secondary": "Learn More"
+    }
+  },
   "common": {
     "loading": "Loading...",
-    "error": "An error occurred"
+    "error": "An error occurred",
+    "learn_more": "Learn More",
+    "contact_us": "Contact Us"
   }
 }

@@ -1,13 +1,16 @@
 'use client';
 
 import { Menu, X } from 'lucide-react';
+import { useLocale } from 'next-intl';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+  const locale = useLocale();
 
   const navigation = [
     { name: 'Accueil', href: '/' },
@@ -25,8 +28,9 @@ const Header = () => {
   };
 
   const toggleLanguage = () => {
-    // TODO: Implement next-intl language switching
-    console.log('Language toggle clicked - implement next-intl');
+    const newLocale = locale === 'fr' ? 'en' : 'fr';
+    const newPath = pathname.replace(/^\/(fr|en)/, `/${newLocale}`);
+    router.push(newPath);
   };
 
   return (
@@ -65,8 +69,9 @@ const Header = () => {
             <button
               onClick={toggleLanguage}
               className="hidden sm:inline-flex items-center px-3 py-2 border border-border rounded-md text-sm font-medium text-foreground bg-background hover:bg-foreground/5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors btn"
+              title={`Switch to ${locale === 'fr' ? 'English' : 'Français'}`}
             >
-              FR/EN
+              {locale === 'fr' ? 'EN' : 'FR'}
             </button>
 
             {/* Mobile menu button */}
@@ -107,10 +112,14 @@ const Header = () => {
               ))}
               {/* Mobile Language Toggle */}
               <button
-                onClick={toggleLanguage}
+                onClick={() => {
+                  toggleLanguage();
+                  setIsMenuOpen(false);
+                }}
                 className="w-full text-left text-foreground/80 hover:text-primary px-3 py-2 text-base font-medium transition-colors duration-200 btn"
+                title={`Switch to ${locale === 'fr' ? 'English' : 'Français'}`}
               >
-                FR/EN
+                {locale === 'fr' ? '🇬🇧 English' : '🇫🇷 Français'}
               </button>
             </div>
           </div>

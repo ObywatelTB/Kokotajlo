@@ -149,6 +149,7 @@ cd backend && poetry run uvicorn main:app --host 0.0.0.0 --port $PORT
 - ✅ Navigation: Active state highlighting for current page
 - ✅ Subpages: /about, /services, /resources, /contact with French content and SEO
 - ✅ About Us: Detailed bios/mission; Emphasizes Polish-Chinese edge for French market.
+- ✅ Services: In-depth tech/pilot details; Bilingual: next-intl setup (FR default).
 
 ## Usage
 

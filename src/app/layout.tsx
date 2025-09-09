@@ -1,6 +1,8 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import type { Metadata } from "next";
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -56,27 +58,31 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const messages = await getMessages();
+
   return (
     <html lang="fr">
       <body
         className={`${inter.variable} font-sans antialiased min-h-screen bg-white text-gray-900`}
       >
-        <Header />
+        <NextIntlClientProvider messages={messages}>
+          <Header />
 
-        <main className="flex-1 pt-16">
-          {children}
-        </main>
+          <main className="flex-1 pt-16">
+            {children}
+          </main>
 
-        {/* Chatbot Widget (disabled in favor of inline chat) */}
-        {/* <Chatbot position="top-right" defaultOpen={true} /> */}
+          {/* Chatbot Widget (disabled in favor of inline chat) */}
+          {/* <Chatbot position="top-right" defaultOpen={true} /> */}
 
-        {/* Footer */}
-        <Footer />
+          {/* Footer */}
+          <Footer />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

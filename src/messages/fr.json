@@ -12,8 +12,76 @@
     "cta_primary": "Découvrir Nos Services",
     "cta_secondary": "Discuter Partenariat"
   },
+  "services": {
+    "title": "Nos Services d'Agents IA",
+    "subtitle": "Solutions sur mesure pour grandes entreprises françaises",
+    "local_llms": {
+      "title": "Agents IA Locaux",
+      "description": "Hébergement sécurisé, RAG pour données sensibles – GDPR-ready",
+      "features": [
+        "Infrastructure locale sécurisée",
+        "RAG pour traitement confidentiel",
+        "Chiffrement end-to-end",
+        "Souveraineté des données"
+      ]
+    },
+    "iot_automation": {
+      "title": "Extension IoT avec Raisonnement",
+      "description": "Intégrez LLMs dans devices industriels (ex: vending machines) pour tâches autonomes",
+      "features": [
+        "Connexion équipements IoT",
+        "Raisonnement temps réel",
+        "Maintenance prédictive",
+        "Optimisation énergétique"
+      ]
+    },
+    "compliance_pilots": {
+      "title": "Conformité et Déploiement",
+      "description": "AI Act intégré; Premier pilote: €200k + 10-15% shares pour 6-12m runway",
+      "features": [
+        "AI Act compliance intégrée",
+        "Auditabilité complète",
+        "Traçabilité des décisions",
+        "Modèles equity-friendly"
+      ]
+    },
+    "process": {
+      "title": "Notre Processus",
+      "subtitle": "Une approche méthodique pour transformer votre entreprise avec l'intelligence artificielle",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Audit",
+          "description": "Analyse de vos processus et identification des opportunités IA"
+        },
+        {
+          "number": "2",
+          "title": "Conception",
+          "description": "Architecture et développement du pilote sur mesure"
+        },
+        {
+          "number": "3",
+          "title": "Test",
+          "description": "Validation et optimisation en environnement contrôlé"
+        },
+        {
+          "number": "4",
+          "title": "Déploiement",
+          "description": "Mise en production avec accompagnement et support"
+        }
+      ]
+    },
+    "proposal": {
+      "title": "Proposition de Pilote",
+      "subtitle": "Contactez-nous pour customisation (automation sectorielle)",
+      "cta_primary": "Demander un devis",
+      "cta_secondary": "En savoir plus"
+    }
+  },
   "common": {
     "loading": "Chargement...",
-    "error": "Une erreur s'est produite"
+    "error": "Une erreur s'est produite",
+    "learn_more": "En savoir plus",
+    "contact_us": "Contactez-nous"
   }
 }

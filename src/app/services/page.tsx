@@ -1,13 +1,12 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Services IA | Kokotajlo Agents IA FR',
-  description: 'Services RAG/MCP pour entreprises françaises. Pilotes IA sur mesure, conformité GDPR/AI Act, automatisation industrielle. Solutions locales et sécurisées.',
-  keywords: ['services IA entreprise', 'RAG MCP France', 'pilotes IA', 'automatisation industrielle', 'GDPR conformité', 'agents IA locaux'],
+  title: 'Services IA | Kokotajlo – RAG MCP pour Entreprises FR',
+  description: 'Agents IA locaux IoT conformes. Pilotes personnalisés GDPR/AI Act France. Automatisation industrielle sécurisée.',
+  keywords: ['agents IA locaux IoT', 'pilotes IA GDPR France', 'RAG MCP automation', 'conformité AI Act entreprise'],
   openGraph: {
-    title: 'Services IA | Kokotajlo Agents IA FR',
-    description: 'Services RAG/MCP pour entreprises françaises avec conformité GDPR et pilotes sur mesure.',
+    title: 'Services IA | Kokotajlo – RAG MCP pour Entreprises FR',
+    description: 'Agents IA locaux IoT conformes. Pilotes personnalisés GDPR/AI Act France.',
     url: '/services',
     siteName: 'Kokotajlo',
     locale: 'fr_FR',
@@ -23,12 +22,16 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Nos Services IA
+              Nos Services d&apos;Agents IA
             </h1>
             <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
-              Solutions RAG/MCP personnalisées pour la transformation digitale
-              de votre entreprise française
+              Solutions sur mesure pour grandes entreprises françaises
             </p>
+            <div className="mt-8 p-6 bg-white/80 backdrop-blur-sm rounded-lg border border-primary-200">
+              <p className="text-lg text-foreground/80">
+                Agents IA conformes pour automatisation industrielle et IoT
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -37,23 +40,24 @@ export default function ServicesPage() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* RAG Implementation */}
+            {/* Local LLMs */}
             <div className="bg-background border border-border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
               <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
-                <span className="text-primary-content font-bold text-xl">R</span>
+                <span className="text-primary-content font-bold text-xl">🏠</span>
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-3">
-                Implémentation RAG
+                Agents IA Locaux
               </h3>
               <p className="text-foreground/70 mb-4">
-                Architecture Retrieval-Augmented Generation optimisée pour vos données
-                d&apos;entreprise. Intégration transparente avec vos systèmes existants.
+                Hébergement sécurisé, RAG pour données sensibles – GDPR-ready.
+                Infrastructure locale pour souveraineté numérique complète.
               </p>
               <ul className="text-sm text-foreground/60 space-y-2">
-                <li>• Indexation intelligente de documents</li>
-                <li>• Recherche sémantique avancée</li>
-                <li>• Réponses contextuelles précises</li>
-                <li>• Conformité GDPR intégrée</li>
+                <li>• Serveurs sécurisés en France</li>
+                <li>• Modèles IA open-source déployés localement</li>
+                <li>• Chiffrement end-to-end des données</li>
+                <li>• Auditabilité complète des traitements</li>
+                <li>• Conformité RGPD et AI Act</li>
               </ul>
             </div>
 
@@ -100,40 +104,44 @@ export default function ServicesPage() {
             {/* IoT Automation */}
             <div className="bg-background border border-border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
               <div className="w-12 h-12 bg-accent-600 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-accent-content font-bold text-xl">I</span>
+                <span className="text-accent-content font-bold text-xl">🔗</span>
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-3">
-                Automatisation IoT
+                Extension IoT avec Raisonnement
               </h3>
               <p className="text-foreground/70 mb-4">
-                Intégration d&apos;agents IA avec vos équipements industriels.
-                Optimisation des processus et maintenance prédictive.
+                Intégrez LLMs dans devices industriels (ex: vending machines) pour tâches autonomes.
+                Agents IA embarqués pour décisions temps réel.
               </p>
               <ul className="text-sm text-foreground/60 space-y-2">
-                <li>• Connexion équipements</li>
-                <li>• Analyse temps réel</li>
-                <li>• Maintenance prédictive</li>
-                <li>• Optimisation énergétique</li>
+                <li>• Intégration LLMs dans équipements IoT</li>
+                <li>• Raisonnement autonome temps réel</li>
+                <li>• Décisions basées sur données locales</li>
+                <li>• Maintenance prédictive intelligente</li>
+                <li>• Optimisation énergétique adaptative</li>
+                <li>• Conformité industrielle et sécurité</li>
               </ul>
             </div>
 
-            {/* Compliance & Security */}
+            {/* Compliance & Pilots */}
             <div className="bg-background border border-border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
               <div className="w-12 h-12 bg-primary-700 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-primary-content font-bold text-xl">C</span>
+                <span className="text-primary-content font-bold text-xl">🚀</span>
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-3">
-                Conformité & Sécurité
+                Conformité et Déploiement
               </h3>
               <p className="text-foreground/70 mb-4">
-                Solutions IA 100% conformes aux réglementations européennes.
-                Architecture sécurisée et auditabilité complète.
+                AI Act intégré; Premier pilote: €200k + 10-15% shares pour 6-12m runway.
+                Modèles equity-friendly pour partenariats stratégiques.
               </p>
               <ul className="text-sm text-foreground/60 space-y-2">
-                <li>• Conformité GDPR intégrée</li>
-                <li>• Respect AI Act européen</li>
-                <li>• Chiffrement end-to-end</li>
-                <li>• Traçabilité des décisions</li>
+                <li>• AI Act compliance intégrée dès le design</li>
+                <li>• Pilotes personnalisés (€200k+) avec equity</li>
+                <li>• Modèles de financement flexibles</li>
+                <li>• Partenariats stratégiques B2B</li>
+                <li>• ROI démontré et mesurable</li>
+                <li>• Support et accompagnement complet</li>
               </ul>
             </div>
 
@@ -155,6 +163,76 @@ export default function ServicesPage() {
                 <li>• Performance garantie</li>
                 <li>• Réduction des coûts cloud</li>
               </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tech Diagram Section */}
+      <section className="py-16 bg-foreground/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-6">
+              Architecture Technique RAG/MCP
+            </h2>
+            <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+              Flux de données et traitement IA pour solutions d&apos;entreprise sécurisées
+            </p>
+          </div>
+
+          {/* Diagram Placeholder */}
+          <div className="bg-white rounded-lg border border-border p-8 shadow-sm">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+              {/* Data Sources */}
+              <div className="text-center">
+                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-primary-content text-2xl">📊</span>
+                </div>
+                <h3 className="font-semibold text-foreground mb-2">Sources de Données</h3>
+                <p className="text-sm text-foreground/70">Documents, IoT, bases de données</p>
+              </div>
+
+              {/* Arrow */}
+              <div className="text-center">
+                <div className="flex items-center justify-center">
+                  <span className="text-4xl text-primary">→</span>
+                </div>
+                <p className="text-sm text-foreground/70 mt-2">RAG Processing</p>
+              </div>
+
+              {/* AI Agent */}
+              <div className="text-center">
+                <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-accent-content text-2xl">🤖</span>
+                </div>
+                <h3 className="font-semibold text-foreground mb-2">Agent IA</h3>
+                <p className="text-sm text-foreground/70">Décisions autonomes conformes</p>
+              </div>
+            </div>
+
+            {/* MCP Layer */}
+            <div className="mt-12 pt-8 border-t border-border">
+              <div className="text-center">
+                <h4 className="font-semibold text-foreground mb-4">Couche MCP (Model Context Protocol)</h4>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="p-4 bg-primary-50 rounded-lg">
+                    <span className="block text-2xl mb-2">🔧</span>
+                    <p className="text-sm text-foreground/70">Tools Integration</p>
+                  </div>
+                  <div className="p-4 bg-accent-50 rounded-lg">
+                    <span className="block text-2xl mb-2">🔒</span>
+                    <p className="text-sm text-foreground/70">Security Layer</p>
+                  </div>
+                  <div className="p-4 bg-primary-100 rounded-lg">
+                    <span className="block text-2xl mb-2">📈</span>
+                    <p className="text-sm text-foreground/70">Performance Monitoring</p>
+                  </div>
+                  <div className="p-4 bg-accent-100 rounded-lg">
+                    <span className="block text-2xl mb-2">✅</span>
+                    <p className="text-sm text-foreground/70">Compliance Audit</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -206,31 +284,123 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Proposal Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-r from-primary-50 to-accent-50 rounded-lg p-8 md:p-12">
-            <div className="text-center">
-              <h2 className="text-3xl font-bold text-foreground mb-6">
-                Prêt à commencer votre transformation IA ?
-              </h2>
-              <p className="text-lg text-foreground/70 mb-8 max-w-2xl mx-auto">
-                Contactez-nous pour discuter de votre projet et obtenir un devis
-                personnalisé pour votre pilote IA.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/contact"
-                  className="bg-primary text-primary-content hover:bg-primary-600 px-8 py-3 rounded-lg font-medium transition-colors duration-200 btn"
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-6">
+              Proposition de Pilote
+            </h2>
+            <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+              Contactez-nous pour customisation (automation sectorielle)
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Form Stub */}
+            <div className="bg-background border border-border rounded-lg p-8 shadow-sm">
+              <h3 className="text-xl font-semibold text-foreground mb-6">
+                Demande de Pilote Personnalisé
+              </h3>
+              <form className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Nom de l&apos;entreprise *
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-3 border border-border rounded-lg bg-background text-foreground placeholder:text-foreground/50 focus:ring-2 focus:ring-accent-300 focus:border-transparent"
+                    placeholder="Votre entreprise"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Secteur d&apos;activité
+                  </label>
+                  <select className="w-full px-4 py-3 border border-border rounded-lg bg-background text-foreground focus:ring-2 focus:ring-accent-300 focus:border-transparent">
+                    <option>Manufacture</option>
+                    <option>IoT/Industrie 4.0</option>
+                    <option>Logistique</option>
+                    <option>Énergie</option>
+                    <option>Autre</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Besoin spécifique
+                  </label>
+                  <textarea
+                    rows={4}
+                    className="w-full px-4 py-3 border border-border rounded-lg bg-background text-foreground placeholder:text-foreground/50 focus:ring-2 focus:ring-accent-300 focus:border-transparent"
+                    placeholder="Décrivez votre cas d'usage..."
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-primary text-primary-content hover:bg-primary-600 px-8 py-3 rounded-lg font-medium transition-colors duration-200 btn"
                 >
-                  Demander un devis
-                </Link>
-                <Link
-                  href="/resources"
-                  className="bg-background text-primary border border-primary hover:bg-primary hover:text-primary-content px-8 py-3 rounded-lg font-medium transition-colors duration-200 btn"
-                >
-                  En savoir plus
-                </Link>
+                  Envoyer la demande
+                </button>
+              </form>
+            </div>
+
+            {/* Pilot Benefits */}
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-primary-50 to-accent-50 rounded-lg p-8">
+                <h3 className="text-xl font-semibold text-foreground mb-6">
+                  Avantages du Pilote
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-primary-content font-bold text-sm">€</span>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-foreground">Investissement Accessible</h4>
+                      <p className="text-foreground/70 text-sm">€200k + equity pour 6-12 mois de développement</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-accent-content font-bold text-sm">⚡</span>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-foreground">Rapidité d&apos;exécution</h4>
+                      <p className="text-foreground/70 text-sm">POC en 3-6 mois avec résultats tangibles</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-primary-content font-bold text-sm">🎯</span>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-foreground">ROI Mesuré</h4>
+                      <p className="text-foreground/70 text-sm">Métriques claires et objectifs définis</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-background border border-border rounded-lg p-6">
+                <h4 className="font-medium text-foreground mb-4">Prochaines étapes</h4>
+                <ol className="text-sm text-foreground/70 space-y-2">
+                  <li className="flex items-start space-x-2">
+                    <span className="text-primary font-bold">1.</span>
+                    <span>Audit technique et définition des besoins</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="text-accent font-bold">2.</span>
+                    <span>Proposition technique et financière détaillée</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="text-primary-600 font-bold">3.</span>
+                    <span>Développement et déploiement du pilote</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="text-accent-600 font-bold">4.</span>
+                    <span>Évaluation et scaling si réussite</span>
+                  </li>
+                </ol>
               </div>
             </div>
           </div>
