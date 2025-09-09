@@ -114,7 +114,7 @@ const InlineChat = ({ locale = 'fr', context = 'general' }: InlineChatProps) => 
     >
       <div
         ref={containerRef}
-        className="bg-background/90 backdrop-blur-sm border border-border rounded-xl shadow-sm transition-all duration-300 overflow-hidden"
+        className="backdrop-blur-sm border border-border rounded-xl shadow-sm transition-all duration-300 overflow-hidden"
         style={{
           maxHeight: isExpanded ? '60vh' : '56px',
         }}
