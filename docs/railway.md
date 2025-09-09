@@ -1,14 +1,14 @@
 # Railway Deployment Guide
 
-Deploy: `node deploy.js` (automated) or Railway dashboard > New Project > GitHub (ObywatelTB/Kokotajlo). Services: Next.js frontend + FastAPI backend. Env: LLM keys from .env.railway. Custom domain: .fr for SEO.
+Deploy: `./deploy.sh` (automated) or Railway dashboard > New Project > GitHub (ObywatelTB/Kokotajlo). Services: Next.js frontend + FastAPI backend. Env: LLM keys from .env.railway. Custom domain: .fr for SEO.
 
 ## Overview
 
 Railway provides seamless deployment for our monorepo architecture, automatically handling both frontend and backend services. This guide covers deployment, environment management, and production optimization for French enterprise clients.
 
-## 🚀 Programmatic Deployment (Recommended)
+## 🚀 Simple CLI Deployment (Recommended)
 
-For automated, reliable deployments, use our custom Node.js deployment script that handles the entire process programmatically.
+For automated, reliable deployments, use our simple bash script that handles the entire Railway deployment process.
 
 ### Quick Start
 
@@ -16,23 +16,20 @@ For automated, reliable deployments, use our custom Node.js deployment script th
 # Prerequisites: Railway CLI installed and logged in
 railway login
 
-# Deploy with one command
-node deploy.js
-
-# Options available
-node deploy.js --verbose    # Detailed logging
-node deploy.js --skip-git   # Skip git operations
-node deploy.js --dry-run    # Preview deployment steps
+# Make executable and deploy
+chmod +x deploy.sh
+./deploy.sh
 ```
 
 ### Script Features
 
-- **Git Management**: Automatic status check, commit, and push to main branch
-- **Multi-Service Setup**: Configures frontend (Next.js) and backend (FastAPI) services
-- **Environment Variables**: Parses `.env.railway` and sets service-specific variables
-- **Health Checks**: Tests live endpoints and verifies deployment success
-- **URL Synchronization**: Updates live URLs back to environment variables
-- **Error Handling**: Comprehensive logging and graceful failure recovery
+- **Git Push**: Automatic push to main branch to ensure latest code
+- **Project Link**: Connects to Railway project 'kokotajlo'
+- **Environment Parsing**: Reads `.env.railway` and sets all variables via CLI
+- **Multi-Service Deployment**: Deploys frontend (Next.js) and backend (FastAPI) services
+- **Health Checks**: Tests live endpoints with curl commands
+- **URL Updates**: Syncs live URLs back to environment variables
+- **Error Handling**: Bash `set -e` for immediate failure on errors
 
 ### Environment Configuration
 
@@ -75,13 +72,13 @@ The script creates two Railway services:
 
 ### Deployment Flow
 
-1. **Git Check**: Verify clean working directory and main branch
-2. **Project Link**: Connect to Railway project 'kokotajlo'
-3. **Environment Setup**: Parse and set environment variables per service
-4. **Service Deployment**: Deploy frontend and backend sequentially
-5. **Verification**: Test health endpoints and get live URLs
-6. **URL Update**: Sync live URLs back to environment variables
-7. **Final Check**: Confirm all services are responding
+1. **Git Push**: Ensures latest code is on main branch
+2. **Project Link**: `railway link --project kokotajlo`
+3. **Environment Setup**: Parse `.env.railway` and `railway variables set` for each
+4. **Service Deployment**: `railway up --service frontend` then backend
+5. **URL Retrieval**: `railway url --service frontend/backend`
+6. **Health Testing**: `curl -f` on frontend and backend/health
+7. **URL Update**: Update `NEXT_PUBLIC_URL` if changed and redeploy
 
 ### Monitoring & Troubleshooting
 
@@ -96,8 +93,12 @@ railway logs --service backend
 railway url --service frontend
 railway url --service backend
 
-# Monitor resource usage
-railway metrics --service frontend
+# Test endpoints manually
+curl -f https://kokotajlo.up.railway.app
+curl -f https://kokotajlo-backend.up.railway.app/health
+
+# Check environment variables
+railway variables
 ```
 
 ### Cost Optimization

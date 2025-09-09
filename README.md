@@ -223,28 +223,24 @@ Enhanced VSCode integration for streamlined development:
 
 ## Deployment
 
-### 🚀 Programmatic Railway Deployment (Recommended)
+### 🚀 Simple Railway CLI Deployment (Recommended)
 
-Automate full-stack deployment with our custom script for fast, reliable production deploys.
+One-command deployment with our bash script for fast, reliable production deploys.
 
 #### Quick Deploy
 ```bash
-# One-command deployment (assumes Railway CLI installed/logged in)
-node deploy.js
-
-# Or with options
-node deploy.js --verbose              # Detailed logging
-node deploy.js --skip-git             # Skip git operations
-node deploy.js --dry-run              # Preview without executing
+# Make script executable and run
+chmod +x deploy.sh
+./deploy.sh
 ```
 
 #### What the Script Does
-- ✅ **Git Management**: Checks status, commits changes, pushes to main
-- ✅ **Railway Setup**: Links project, configures multi-service architecture
-- ✅ **Environment**: Parses `.env.railway`, sets variables per service
-- ✅ **Deployment**: Deploys frontend (Next.js) + backend (FastAPI) services
-- ✅ **Verification**: Gets live URLs, tests health endpoints
-- ✅ **Updates**: Syncs live URLs back to environment variables
+- ✅ **Git Push**: Ensures latest code is on main branch
+- ✅ **Project Link**: Connects to Railway project 'kokotajlo'
+- ✅ **Environment**: Parses `.env.railway` and sets all variables
+- ✅ **Multi-Service**: Deploys frontend (Next.js) + backend (FastAPI)
+- ✅ **Health Checks**: Tests live URLs and backend `/health` endpoint
+- ✅ **URL Updates**: Syncs live URLs back to environment variables
 
 #### Environment Setup
 Create `.env.railway` in project root:
@@ -307,8 +303,9 @@ The build process automatically:
 
 ### Cost & Performance
 - **Estimated Cost**: <$20/month for production demos
-- **Performance**: Sub-5min deployment, auto-scaling ready
-- **Monitoring**: Built-in Railway logs, metrics, and health checks
+- **Performance**: Sub-5min deployment with health checks
+- **Monitoring**: Built-in Railway logs, metrics, and curl health tests
+- **Services**: 2 (frontend static + backend API)
 
 ## Features Overview
 
