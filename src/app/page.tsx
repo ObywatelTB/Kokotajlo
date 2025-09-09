@@ -9,10 +9,10 @@ export default function Home() {
       {/* Hero Section */}
       <section className="h-screen bg-gradient-to-br from-primary-50 to-accent-50 dark:from-primary-900 dark:to-accent-900 flex items-center justify-center px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+          <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
             Agents IA Conformes pour les Entreprises Françaises
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-foreground/70 mb-12 max-w-3xl mx-auto leading-relaxed">
             Découvrez nos solutions d&apos;IA locale avec LLMs, RAG et MCP – Prêtes pour l&apos;AI Act et GDPR.
             Automatisez vos processus industriels et IoT avec efficacité.
           </p>
@@ -43,26 +43,26 @@ export default function Home() {
       </section>
 
       {/* About Teaser Section */}
-      <section className="py-20 px-4 bg-white">
+      <section className="py-20 px-4 bg-background">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">
+          <h2 className="text-4xl font-bold text-center text-foreground mb-16">
             À Propos de Nous
           </h2>
 
           <div className="grid md:grid-cols-2 gap-12 items-start">
             {/* Left Column - Tobias */}
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-xl shadow-sm">
-              <h3 className="text-2xl font-semibold text-primary-blue mb-4">Tobias Bajek</h3>
-              <p className="text-gray-700 leading-relaxed">
+            <div className="bg-gradient-to-br from-primary-800 to-primary-900 p-8 rounded-xl shadow-sm">
+              <h3 className="text-2xl font-semibold text-primary-content mb-4">Tobias Bajek</h3>
+              <p className="text-foreground/70 leading-relaxed">
                 Ingénieur logiciel polonais expérimenté, passionné par l&apos;IA scalable.
                 Expert en architectures de systèmes distribués et en développement d&apos;agents IA conformes aux réglementations européennes.
               </p>
             </div>
 
             {/* Right Column - Mengran */}
-            <div className="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-xl shadow-sm">
-              <h3 className="text-2xl font-semibold text-accent-green mb-4">Mengran Zhao</h3>
-              <p className="text-gray-700 leading-relaxed">
+            <div className="bg-gradient-to-br from-accent-800 to-accent-900 p-8 rounded-xl shadow-sm">
+              <h3 className="text-2xl font-semibold text-accent-content mb-4">Mengran Zhao</h3>
+              <p className="text-foreground/70 leading-relaxed">
                 Développeuse d&apos;affaires chinoise de 33 ans, experte en marchés internationaux.
                 Spécialiste en expansion commerciale et en relations avec les entreprises européennes.
               </p>
@@ -71,9 +71,9 @@ export default function Home() {
 
           {/* Mission Statement */}
           <div className="mt-16 text-center">
-            <div className="bg-gradient-to-r from-primary-blue/10 to-accent-green/10 p-8 rounded-xl border border-gray-100">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Notre Mission</h3>
-              <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            <div className="bg-gradient-to-r from-primary/10 to-accent/10 p-8 rounded-xl border border-border">
+              <h3 className="text-2xl font-semibold text-foreground mb-4">Notre Mission</h3>
+              <p className="text-lg text-foreground/70 max-w-4xl mx-auto leading-relaxed">
                 Duo polono-chinois créant des agents IA pour remplacer les tâches humaines dans les grandes entreprises françaises –
                 Premier pilote personnalisé, puis scaling. Nous combinons l&apos;expertise technique européenne avec l&apos;agilité commerciale asiatique
                 pour offrir des solutions d&apos;IA véritablement conformes et efficaces.
@@ -84,50 +84,50 @@ export default function Home() {
       </section>
 
       {/* Services Overview Section */}
-      <section className="py-20 px-4 bg-gray-50">
+      <section className="py-20 px-4 bg-foreground/5">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">
+          <h2 className="text-4xl font-bold text-center text-foreground mb-16">
             Nos Services
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {/* Service Card 1 - Local AI Agents */}
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
-              <div className="w-16 h-16 bg-primary-blue/10 rounded-lg flex items-center justify-center mb-6">
+            <div className="bg-background p-8 rounded-xl shadow-sm border border-border hover:shadow-md transition-shadow duration-300">
+              <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
                 <span className="text-3xl">🧠</span>
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h3 className="text-2xl font-semibold text-foreground mb-4">
                 Agents IA Locaux
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-foreground/70 leading-relaxed">
                 LLMs hébergés en local pour sécurité et performance. RAG pour données d&apos;entreprise sécurisées.
                 Protégez vos informations sensibles tout en bénéficiant d&apos;une IA puissante et personnalisée.
               </p>
             </div>
 
             {/* Service Card 2 - Industrial Automation */}
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
-              <div className="w-16 h-16 bg-accent-green/10 rounded-lg flex items-center justify-center mb-6">
+            <div className="bg-background p-8 rounded-xl shadow-sm border border-border hover:shadow-md transition-shadow duration-300">
+              <div className="w-16 h-16 bg-accent/10 rounded-lg flex items-center justify-center mb-6">
                 <span className="text-3xl">⚙️</span>
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h3 className="text-2xl font-semibold text-foreground mb-4">
                 Automatisation Industrielle
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-foreground/70 leading-relaxed">
                 Extension IoT avec raisonnement IA – Remplacez les tâches humaines dans vending/manufacturing.
                 Optimisez vos processus industriels avec des agents intelligents qui apprennent et s&apos;adaptent.
               </p>
             </div>
 
             {/* Service Card 3 - Compliance Guarantee */}
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
-              <div className="w-16 h-16 bg-primary-blue/10 rounded-lg flex items-center justify-center mb-6">
+            <div className="bg-background p-8 rounded-xl shadow-sm border border-border hover:shadow-md transition-shadow duration-300">
+              <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
                 <span className="text-3xl">✅</span>
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h3 className="text-2xl font-semibold text-foreground mb-4">
                 Conformité Garantie
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-foreground/70 leading-relaxed">
                 Prêts AI Act & GDPR dès le départ. Pilotes personnalisés pour grandes firmes françaises (€200k + shares).
                 Démarrez votre transformation digitale en toute sérénité réglementaire.
               </p>
@@ -147,12 +147,12 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-primary-blue">
+      <section className="py-20 px-4 bg-primary-900">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-6">
             Partenariat avec Kokotajlo
           </h2>
-          <p className="text-xl text-blue-100 mb-12 max-w-2xl mx-auto">
+          <p className="text-xl text-white mb-12 max-w-2xl mx-auto">
             Contactez-nous pour un pilote personnalisé. Ensemble, révolutionnons votre entreprise
             avec des agents IA conformes et performants.
           </p>

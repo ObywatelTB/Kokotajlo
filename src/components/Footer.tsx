@@ -18,8 +18,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-primary-content">Kokotajlo</h3>
-            <p className="text-primary-200 text-sm">
+            <h3 className="text-lg font-semibold text-black">Kokotajlo</h3>
+            <p className="text-black text-sm">
               Agents IA conformes pour entreprises françaises.
               Solutions RAG/MCP avec conformité GDPR et AI Act.
             </p>
@@ -27,13 +27,13 @@ const Footer = () => {
 
           {/* Navigation Links */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-primary-content">Navigation</h4>
+            <h4 className="text-lg font-semibold text-black">Navigation</h4>
             <nav className="flex flex-col space-y-2">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-primary-200 hover:text-primary-content transition-colors duration-200 text-sm"
+                  className="text-black hover:text-white transition-colors duration-200 text-sm"
                 >
                   {item.name}
                 </Link>
@@ -43,17 +43,17 @@ const Footer = () => {
 
           {/* Legal & Social */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-primary-content">Légal</h4>
+            <h4 className="text-lg font-semibold text-black">Légal</h4>
             <div className="flex flex-col space-y-2">
               <Link
                 href="/privacy"
-                className="text-primary-200 hover:text-primary-content transition-colors duration-200 text-sm"
+                className="text-black hover:text-white transition-colors duration-200 text-sm"
               >
                 Avis de Confidentialité (GDPR/AI Act)
               </Link>
               <Link
                 href="/terms"
-                className="text-primary-200 hover:text-primary-content transition-colors duration-200 text-sm"
+                className="text-black hover:text-white transition-colors duration-200 text-sm"
               >
                 Conditions d&apos;utilisation
               </Link>
@@ -65,7 +65,7 @@ const Footer = () => {
                 href="https://linkedin.com/company/kokotajlo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary-200 hover:text-primary-content transition-colors duration-200"
+                className="text-black hover:text-white transition-colors duration-200"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
@@ -77,10 +77,10 @@ const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-primary-700 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-primary-200 text-sm">
+            <p className="text-black text-sm">
               © 2025 Kokotajlo. Tous droits réservés.
             </p>
-            <p className="text-primary-200 text-sm mt-2 md:mt-0">
+            <p className="text-black text-sm mt-2 md:mt-0">
               Agents IA conformes pour entreprises françaises.
             </p>
           </div>
