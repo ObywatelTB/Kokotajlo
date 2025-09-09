@@ -51,8 +51,8 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 gap-12 items-start">
             {/* Left Column - Tobias */}
-            <div className="bg-gradient-to-br from-primary-800 to-primary-900 p-8 rounded-xl shadow-sm">
-              <h3 className="text-2xl font-semibold text-primary-content mb-4">Tobias Bajek</h3>
+            <div className="bg-gradient-to-br from-primary-50 to-primary-100 p-8 rounded-xl shadow-sm">
+              <h3 className="text-2xl font-semibold text-black mb-4">Tobias Bajek</h3>
               <p className="text-foreground/70 leading-relaxed">
                 Ingénieur logiciel polonais expérimenté, passionné par l&apos;IA scalable.
                 Expert en architectures de systèmes distribués et en développement d&apos;agents IA conformes aux réglementations européennes.
@@ -60,8 +60,8 @@ export default function Home() {
             </div>
 
             {/* Right Column - Mengran */}
-            <div className="bg-gradient-to-br from-accent-800 to-accent-900 p-8 rounded-xl shadow-sm">
-              <h3 className="text-2xl font-semibold text-accent-content mb-4">Mengran Zhao</h3>
+            <div className="bg-gradient-to-br from-accent-50 to-accent-100 p-8 rounded-xl shadow-sm">
+              <h3 className="text-2xl font-semibold text-black mb-4">Mengran Zhao</h3>
               <p className="text-foreground/70 leading-relaxed">
                 Développeuse d&apos;affaires chinoise de 33 ans, experte en marchés internationaux.
                 Spécialiste en expansion commerciale et en relations avec les entreprises européennes.
