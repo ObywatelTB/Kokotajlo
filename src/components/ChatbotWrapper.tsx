@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import InlineChat from './InlineChat';
 
@@ -27,7 +27,6 @@ const ChatbotWrapper = () => {
     return 'general';
   }, [pathname]);
 
-  const [target, setTarget] = useState<HTMLElement | null>(null);
   const portalHostRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -44,14 +43,12 @@ const ChatbotWrapper = () => {
     lastSection.appendChild(host);
 
     portalHostRef.current = host;
-    setTarget(lastSection);
 
     return () => {
       if (portalHostRef.current && portalHostRef.current.parentElement) {
         portalHostRef.current.parentElement.removeChild(portalHostRef.current);
       }
       portalHostRef.current = null;
-      setTarget(null);
     };
   }, [isHomePage, pathname]);
 

@@ -1,3 +1,4 @@
+import Analytics from '@/components/Analytics';
 import ChatbotWrapper from '@/components/ChatbotWrapper';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
@@ -66,12 +67,74 @@ export default async function RootLayout({
 }>) {
   const messages = await getMessages();
 
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Kokotajlo",
+    "description": "Agents IA conformes pour entreprises FR. Solutions IA locale RAG MCP pour automation industrielle avec conformité AI Act.",
+    "url": process.env.NEXT_PUBLIC_URL || "https://kokotajlo.fr",
+    "logo": `${process.env.NEXT_PUBLIC_URL || "https://kokotajlo.fr"}/file.svg`,
+    "foundingDate": "2024",
+    "founders": [
+      {
+        "@type": "Person",
+        "name": "Tobias Bajek",
+        "jobTitle": "CTO & Co-Founder"
+      },
+      {
+        "@type": "Person",
+        "name": "Mengran Zhao",
+        "jobTitle": "CEO & Co-Founder"
+      }
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+33-1-23-45-67-89",
+      "contactType": "customer service",
+      "availableLanguage": ["French", "English"]
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "FR",
+      "addressLocality": "Paris"
+    },
+    "sameAs": [
+      "https://github.com/ObywatelTB/Kokotajlo"
+    ],
+    "knowsAbout": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "GDPR Compliance",
+      "AI Act Compliance",
+      "RAG (Retrieval-Augmented Generation)",
+      "MCP (Model Context Protocol)",
+      "Enterprise Automation",
+      "French Business Solutions"
+    ],
+    "serviceType": [
+      "AI Agent Development",
+      "GDPR Compliant AI Solutions",
+      "Enterprise Automation",
+      "Pilot Projects",
+      "French Market AI Solutions"
+    ]
+  };
+
   return (
     <html lang="fr">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schemaData),
+          }}
+        />
+      </head>
       <body
         className={`${inter.variable} font-sans antialiased min-h-screen bg-white text-gray-900`}
       >
         <NextIntlClientProvider messages={messages}>
+          <Analytics />
           <Header />
 
           <main className="flex-1 pt-16">

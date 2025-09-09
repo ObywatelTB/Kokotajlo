@@ -27,7 +27,7 @@ Home (/) → About (/about) → Services (/services) → Resources (/resources) 
 
 **Content Sections**:
 - Hero section with mission statement
-- Team profiles (Tobias Bajek & Mengran Zhang)
+- Team profiles (Tobias Bajek & Mengran Zhao)
 - Mission and values
 - Call-to-action for services
 
