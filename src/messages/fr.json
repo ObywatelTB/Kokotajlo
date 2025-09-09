@@ -111,6 +111,74 @@
       }
     ]
   },
+  "contact": {
+    "title": "Contactez Kokotajlo pour un Partenariat",
+    "subtitle": "Discutons de votre pilote IA personnalisé (automation IoT, RAG/MCP)",
+    "form": {
+      "title": "Demande de Pilote Personnalisé",
+      "name": "Nom complet",
+      "name_placeholder": "Votre nom complet",
+      "email": "Email professionnel",
+      "email_placeholder": "votre@email.com",
+      "company": "Entreprise",
+      "company_placeholder": "Nom de votre entreprise",
+      "sector": "Secteur d'activité",
+      "sector_placeholder": "Sélectionnez votre secteur",
+      "sectors": {
+        "industriel": "Industriel / Manufacturing",
+        "manufacturing": "Manufacturing / Production",
+        "vending": "Vending Machines / IoT",
+        "automotive": "Automotive",
+        "logistics": "Logistics / Supply Chain",
+        "energy": "Energy / Utilities",
+        "other": "Autre"
+      },
+      "message": "Détails du projet",
+      "message_placeholder": "Décrivez votre projet, vos besoins en IA, et vos objectifs...",
+      "gdpr": "J'accepte que mes données soient traitées conformément à notre politique de confidentialité et au RGPD.",
+      "submit": "Envoyer Demande de Pilote",
+      "submitting": "Envoi en cours...",
+      "success_title": "Merci pour votre demande !",
+      "success_message": "Nous analysons votre projet et nous vous contacterons sous 24h pour discuter de votre pilote personnalisé.",
+      "new_request": "Nouvelle demande"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire",
+      "email_invalid": "Format d'email invalide",
+      "gdpr_required": "Vous devez accepter les conditions"
+    },
+    "map": {
+      "title": "Bureau virtuel à Paris",
+      "subtitle": "Localisation pour partenariats IA"
+    },
+    "info": {
+      "title": "Contact Direct",
+      "email": "contact@kokotajlo.fr",
+      "phone": "+33 1 XX XX XX XX",
+      "hours": "Lundi - Vendredi, 9h00 - 18h00 CET"
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "deployment": "Quel est le délai pour un pilote IA ?",
+      "deployment_answer": "Selon la complexité, nos pilotes sont généralement déployés entre 3 et 6 mois, incluant l'audit, le développement et les tests.",
+      "pme": "Travaillez-vous avec des PME ?",
+      "pme_answer": "Oui, nous accompagnons aussi bien les grands groupes que les PME. Nos solutions sont adaptables à toutes les tailles d'entreprise.",
+      "cost": "Quel est le coût d'un pilote ?",
+      "cost_answer": "Nos pilotes démarrent à €200k avec une participation equity (10-15%) pour une période de 6-12 mois de runway.",
+      "compliance": "Garantissez-vous la conformité ?",
+      "compliance_answer": "Absolument. Toutes nos solutions sont conçues dès le départ pour respecter l'AI Act européen et le RGPD."
+    }
+  },
+  "chatbot": {
+    "placeholder": {
+      "home": "Posez une question sur nos agents IA conformes",
+      "resources": "Posez vos questions sur nos guides IA, AI Act, GDPR...",
+      "contact": "Questions sur nos pilotes IA ou partenariats ?",
+      "services": "Questions sur nos solutions RAG/MCP/IoT ?",
+      "about": "Questions sur notre équipe et mission ?",
+      "general": "Posez une question sur nos agents IA conformes"
+    }
+  },
   "common": {
     "loading": "Chargement...",
     "error": "Une erreur s'est produite",

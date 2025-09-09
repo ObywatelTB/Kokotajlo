@@ -1,3 +1,4 @@
+import ChatbotWrapper from '@/components/ChatbotWrapper';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import type { Metadata } from "next";
@@ -77,8 +78,8 @@ export default async function RootLayout({
             {children}
           </main>
 
-          {/* Chatbot Widget (disabled in favor of inline chat) */}
-          {/* <Chatbot position="top-right" defaultOpen={true} /> */}
+          {/* Chatbot Wrapper - Available on all pages */}
+          <ChatbotWrapper />
 
           {/* Footer */}
           <Footer />

@@ -9,7 +9,12 @@ type ChatMessage = {
   content: string;
 };
 
-const InlineChat = () => {
+interface InlineChatProps {
+  locale?: string;
+  context?: string;
+}
+
+const InlineChat = ({ locale = 'fr', context = 'general' }: InlineChatProps) => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
   const [isExpanded, setIsExpanded] = useState(false);
@@ -20,6 +25,32 @@ const InlineChat = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const hasConversation = useMemo(() => messages.some(m => m.role !== 'loading'), [messages]);
+
+  // Get context-aware placeholder text
+  const getPlaceholderText = () => {
+    switch (context) {
+      case 'resources':
+        return locale === 'fr'
+          ? "Posez vos questions sur nos guides IA, AI Act, GDPR..."
+          : "Ask questions about our AI guides, AI Act, GDPR...";
+      case 'contact':
+        return locale === 'fr'
+          ? "Questions sur nos pilotes IA ou partenariats ?"
+          : "Questions about our AI pilots or partnerships?";
+      case 'services':
+        return locale === 'fr'
+          ? "Questions sur nos solutions RAG/MCP/IoT ?"
+          : "Questions about our RAG/MCP/IoT solutions?";
+      case 'about':
+        return locale === 'fr'
+          ? "Questions sur notre équipe et mission ?"
+          : "Questions about our team and mission?";
+      default:
+        return locale === 'fr'
+          ? "Posez une question sur nos agents IA conformes"
+          : "Ask a question about our compliant AI agents";
+    }
+  };
 
   useEffect(() => {
     if (isExpanded && inputRef.current) inputRef.current.focus();
@@ -51,7 +82,11 @@ const InlineChat = () => {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text, language: 'fr' }),
+        body: JSON.stringify({
+          message: text,
+          language: locale,
+          context: { page: context }
+        }),
       });
       const data = await res.json();
       const botText = data.response || data.message || "Désolé, je n'ai pas pu répondre.";
@@ -145,8 +180,8 @@ const InlineChat = () => {
             ref={inputRef}
             type="text"
             name="message"
-            aria-label="Écrire un message"
-            placeholder="Posez une question sur nos agents IA conformes (FR/EN)"
+            aria-label={locale === 'fr' ? "Écrire un message" : "Write a message"}
+            placeholder={getPlaceholderText()}
             className="flex-1 px-3 py-2 text-sm rounded-lg border border-border bg-background text-foreground placeholder:text-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent-300 focus:border-transparent"
             value={input}
             onChange={(e) => setInput(e.target.value)}

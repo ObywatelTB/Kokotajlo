@@ -44,6 +44,24 @@ class ChatResponse(BaseModel):
     conversation_id: Optional[str] = None
 
 
+class ContactRequest(BaseModel):
+    name: str
+    email: str
+    company: str
+    sector: str
+    message: str
+    gdpr: bool
+    source: Optional[str] = "contact_form"
+    timestamp: Optional[str] = None
+
+
+class ContactResponse(BaseModel):
+    success: bool
+    message: str
+    contact_id: Optional[str] = None
+    timestamp: str
+
+
 # Initialize OpenAI client (only if API key is available)
 openai_api_key = os.getenv("OPENAI_API_KEY")
 if openai_api_key and openai_api_key != "stub":
@@ -198,6 +216,93 @@ async def chat_endpoint(request: Request, chat_request: ChatRequest):
             language=chat_request.language or "fr",
             timestamp=datetime.utcnow().isoformat() + "Z",
             conversation_id=f"conv_error_{random.randint(1000, 9999)}"
+        )
+
+# Contact endpoint with Mailjet stub
+
+
+@app.post("/contact")
+@limiter.limit("5/minute")
+async def contact_endpoint(request: Request, contact_request: ContactRequest):
+    """
+    Contact form endpoint with Mailjet email integration stub
+    Rate limited to 5 requests per minute
+    Accepts ContactRequest with contact form data
+    """
+    try:
+        import random
+        from datetime import datetime
+
+        # Log the contact request
+        logger.info(
+            f"Contact request from {contact_request.name} ({contact_request.email}) - {contact_request.company}")
+
+        # Generate contact ID
+        contact_id = f"contact_{random.randint(10000, 99999)}_{int(datetime.utcnow().timestamp())}"
+
+        # Mailjet stub implementation
+        # In production, replace with actual Mailjet API calls
+        email_key = os.getenv("MAILJET_API_KEY")
+        email_secret = os.getenv("MAILJET_SECRET_KEY")
+
+        if email_key and email_secret and email_key != "stub":
+            try:
+                # TODO: Implement actual Mailjet integration
+                # For now, just log the email that would be sent
+                logger.info(
+                    f"Would send email to contact@kokotajlo.fr with contact details from {contact_request.email}")
+
+                # Email content for internal notification
+                internal_subject = f"Nouveau contact: {contact_request.name} - {contact_request.company}"
+                internal_body = f"""
+                Nouveau contact depuis le formulaire:
+
+                Nom: {contact_request.name}
+                Email: {contact_request.email}
+                Entreprise: {contact_request.company}
+                Secteur: {contact_request.sector}
+                Message: {contact_request.message}
+                GDPR accepté: {contact_request.gdpr}
+                Source: {contact_request.source}
+                """
+
+                # Email content for client confirmation
+                client_subject = "Votre demande de contact chez Kokotajlo"
+                client_body = f"""
+                Bonjour {contact_request.name},
+
+                Merci pour votre intérêt pour nos solutions IA conformes.
+
+                Nous avons bien reçu votre demande concernant:
+                - Entreprise: {contact_request.company}
+                - Secteur: {contact_request.sector}
+
+                Notre équipe va analyser votre projet et vous contacter sous 24h ouvrées.
+
+                Cordialement,
+                L'équipe Kokotajlo
+                """
+
+            except Exception as e:
+                logger.error(f"Email sending error: {str(e)}")
+                # Continue with success response even if email fails
+
+        # Store contact in database (placeholder)
+        # TODO: Implement database storage
+        logger.info(f"Contact stored with ID: {contact_id}")
+
+        return ContactResponse(
+            success=True,
+            message="Votre demande a été reçue. Nous vous contacterons sous 24h.",
+            contact_id=contact_id,
+            timestamp=datetime.utcnow().isoformat() + "Z"
+        )
+
+    except Exception as e:
+        logger.error(f"Contact endpoint error: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail="Erreur lors du traitement de votre demande de contact"
         )
 
 # Error handlers

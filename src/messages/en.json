@@ -111,6 +111,74 @@
       }
     ]
   },
+  "contact": {
+    "title": "Contact Kokotajlo for Partnership",
+    "subtitle": "Let's discuss your custom AI pilot (IoT automation, RAG/MCP)",
+    "form": {
+      "title": "Custom Pilot Request",
+      "name": "Full Name",
+      "name_placeholder": "Your full name",
+      "email": "Professional Email",
+      "email_placeholder": "your@email.com",
+      "company": "Company",
+      "company_placeholder": "Your company name",
+      "sector": "Industry Sector",
+      "sector_placeholder": "Select your sector",
+      "sectors": {
+        "industriel": "Industrial / Manufacturing",
+        "manufacturing": "Manufacturing / Production",
+        "vending": "Vending Machines / IoT",
+        "automotive": "Automotive",
+        "logistics": "Logistics / Supply Chain",
+        "energy": "Energy / Utilities",
+        "other": "Other"
+      },
+      "message": "Project Details",
+      "message_placeholder": "Describe your project, AI needs, and objectives...",
+      "gdpr": "I accept that my data be processed in accordance with our privacy policy and GDPR.",
+      "submit": "Send Pilot Request",
+      "submitting": "Sending...",
+      "success_title": "Thank you for your request!",
+      "success_message": "We're analyzing your project and will contact you within 24h to discuss your custom pilot.",
+      "new_request": "New Request"
+    },
+    "validation": {
+      "required": "This field is required",
+      "email_invalid": "Invalid email format",
+      "gdpr_required": "You must accept the conditions"
+    },
+    "map": {
+      "title": "Virtual Office in Paris",
+      "subtitle": "Location for AI partnerships"
+    },
+    "info": {
+      "title": "Direct Contact",
+      "email": "contact@kokotajlo.fr",
+      "phone": "+33 1 XX XX XX XX",
+      "hours": "Monday - Friday, 9:00 AM - 6:00 PM CET"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "deployment": "What is the timeline for an AI pilot?",
+      "deployment_answer": "Depending on complexity, our pilots are typically deployed between 3 and 6 months, including audit, development and testing.",
+      "pme": "Do you work with SMEs?",
+      "pme_answer": "Yes, we support both large corporations and SMEs. Our solutions are adaptable to all company sizes.",
+      "cost": "What is the cost of a pilot?",
+      "cost_answer": "Our pilots start at €200k with equity participation (10-15%) for a 6-12 month runway period.",
+      "compliance": "Do you guarantee compliance?",
+      "compliance_answer": "Absolutely. All our solutions are designed from the start to comply with the European AI Act and GDPR."
+    }
+  },
+  "chatbot": {
+    "placeholder": {
+      "home": "Ask a question about our compliant AI agents",
+      "resources": "Ask questions about our AI guides, AI Act, GDPR...",
+      "contact": "Questions about our AI pilots or partnerships?",
+      "services": "Questions about our RAG/MCP/IoT solutions?",
+      "about": "Questions about our team and mission?",
+      "general": "Ask a question about our compliant AI agents"
+    }
+  },
   "common": {
     "loading": "Loading...",
     "error": "An error occurred",
