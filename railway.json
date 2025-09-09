@@ -1,0 +1,98 @@
+{
+  "$schema": "https://railway.com/railway.schema.json",
+  "services": {
+    "frontend": {
+      "name": "Kokotajlo Frontend",
+      "description": "Next.js 15 bilingual landing page for French enterprise AI pilots",
+      "build": {
+        "builder": "NIXPACKS",
+        "buildCommand": "npm ci && npm run build"
+      },
+      "deploy": {
+        "startCommand": "npm start",
+        "healthcheckPath": "/",
+        "healthcheckTimeout": 300,
+        "restartPolicyType": "ON_FAILURE",
+        "restartPolicyMaxRetries": 10
+      },
+      "source": {
+        "repo": "https://github.com/ObywatelTB/Kokotajlo",
+        "rootDirectory": "."
+      },
+      "envVars": {
+        "NODE_ENV": "production",
+        "NEXT_PUBLIC_URL": {
+          "fromService": {
+            "type": "url"
+          }
+        },
+        "NEXT_PUBLIC_API_URL": {
+          "fromService": {
+            "name": "backend",
+            "type": "url"
+          }
+        }
+      }
+    },
+    "backend": {
+      "name": "Kokotajlo Backend",
+      "description": "FastAPI backend with OpenAI GPT-4o-mini for AI chatbot and contact forms",
+      "build": {
+        "builder": "NIXPACKS",
+        "buildCommand": "cd backend && poetry install --no-dev"
+      },
+      "deploy": {
+        "startCommand": "cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT",
+        "healthcheckPath": "/health",
+        "healthcheckTimeout": 300,
+        "restartPolicyType": "ON_FAILURE",
+        "restartPolicyMaxRetries": 10
+      },
+      "source": {
+        "repo": "https://github.com/ObywatelTB/Kokotajlo",
+        "rootDirectory": "."
+      },
+      "envVars": {
+        "PYTHON_VERSION": "3.9",
+        "POETRY_VERSION": "1.8",
+        "OPENAI_API_KEY": {
+          "type": "secret"
+        },
+        "CORS_ORIGINS": {
+          "fromService": {
+            "name": "frontend",
+            "type": "url"
+          }
+        },
+        "PORT": {
+          "type": "port"
+        }
+      }
+    }
+  },
+  "environments": {
+    "production": {
+      "services": {
+        "frontend": {
+          "envVars": {
+            "NODE_ENV": "production"
+          }
+        },
+        "backend": {
+          "envVars": {
+            "DEBUG": "false",
+            "LOG_LEVEL": "INFO"
+          }
+        }
+      }
+    }
+  },
+  "build": {
+    "builder": "NIXPACKS"
+  },
+  "deploy": {
+    "startCommand": "echo 'Multi-service deployment managed by deploy.js script'",
+    "healthcheckPath": "/",
+    "healthcheckTimeout": 300
+  }
+}

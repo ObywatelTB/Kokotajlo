@@ -223,7 +223,53 @@ Enhanced VSCode integration for streamlined development:
 
 ## Deployment
 
-### Railway (Production Ready)
+### 🚀 Programmatic Railway Deployment (Recommended)
+
+Automate full-stack deployment with our custom script for fast, reliable production deploys.
+
+#### Quick Deploy
+```bash
+# One-command deployment (assumes Railway CLI installed/logged in)
+node deploy.js
+
+# Or with options
+node deploy.js --verbose              # Detailed logging
+node deploy.js --skip-git             # Skip git operations
+node deploy.js --dry-run              # Preview without executing
+```
+
+#### What the Script Does
+- ✅ **Git Management**: Checks status, commits changes, pushes to main
+- ✅ **Railway Setup**: Links project, configures multi-service architecture
+- ✅ **Environment**: Parses `.env.railway`, sets variables per service
+- ✅ **Deployment**: Deploys frontend (Next.js) + backend (FastAPI) services
+- ✅ **Verification**: Gets live URLs, tests health endpoints
+- ✅ **Updates**: Syncs live URLs back to environment variables
+
+#### Environment Setup
+Create `.env.railway` in project root:
+```bash
+# Frontend variables
+NEXT_PUBLIC_URL=https://kokotajlo.up.railway.app
+NEXT_PUBLIC_GA_MEASUREMENT_ID=GA_MEASUREMENT_ID_STUB
+NEXT_PUBLIC_DEFAULT_LOCALE=fr
+NEXT_PUBLIC_LOCALES=fr,en
+
+# Backend variables
+OPENAI_API_KEY=sk-your-openai-key-here
+CORS_ORIGINS=https://kokotajlo.up.railway.app
+PORT=4001
+EMAIL_KEY=stub
+LOG_LEVEL=INFO
+DEBUG=false
+```
+
+#### Live URLs After Deployment
+- **Frontend**: `https://kokotajlo.up.railway.app`
+- **Backend**: `https://kokotajlo-backend.up.railway.app`
+- **Health Check**: `/health` endpoint for backend monitoring
+
+### Manual Railway Setup (Alternative)
 
 1. **Connect Repository**:
    ```bash
@@ -231,7 +277,7 @@ Enhanced VSCode integration for streamlined development:
    # Connect https://github.com/ObywatelTB/Kokotajlo
    ```
 
-2. **Environment Variables**:
+2. **Environment Variables** (set in Railway dashboard):
    ```bash
    NEXT_PUBLIC_URL=https://kokotajlo.fr
    NEXT_PUBLIC_GA_MEASUREMENT_ID=YOUR_GA4_ID
@@ -258,6 +304,11 @@ The build process automatically:
 - ✅ Creates robots.txt for crawlers
 - ✅ Validates schema markup
 - ✅ Prepares analytics tracking
+
+### Cost & Performance
+- **Estimated Cost**: <$20/month for production demos
+- **Performance**: Sub-5min deployment, auto-scaling ready
+- **Monitoring**: Built-in Railway logs, metrics, and health checks
 
 ## Features Overview
 

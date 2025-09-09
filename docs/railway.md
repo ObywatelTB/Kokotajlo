@@ -1,10 +1,113 @@
 # Railway Deployment Guide
 
-Deploy: Railway dashboard > New Project > GitHub (ObywatelTB/Kokotajlo). Services: Next.js (build: npm run build, start: npm start), FastAPI (requirements.txt, start: uvicorn). Env: LLM keys. Custom domain: .fr for SEO.
+Deploy: `node deploy.js` (automated) or Railway dashboard > New Project > GitHub (ObywatelTB/Kokotajlo). Services: Next.js frontend + FastAPI backend. Env: LLM keys from .env.railway. Custom domain: .fr for SEO.
 
 ## Overview
 
 Railway provides seamless deployment for our monorepo architecture, automatically handling both frontend and backend services. This guide covers deployment, environment management, and production optimization for French enterprise clients.
+
+## 🚀 Programmatic Deployment (Recommended)
+
+For automated, reliable deployments, use our custom Node.js deployment script that handles the entire process programmatically.
+
+### Quick Start
+
+```bash
+# Prerequisites: Railway CLI installed and logged in
+railway login
+
+# Deploy with one command
+node deploy.js
+
+# Options available
+node deploy.js --verbose    # Detailed logging
+node deploy.js --skip-git   # Skip git operations
+node deploy.js --dry-run    # Preview deployment steps
+```
+
+### Script Features
+
+- **Git Management**: Automatic status check, commit, and push to main branch
+- **Multi-Service Setup**: Configures frontend (Next.js) and backend (FastAPI) services
+- **Environment Variables**: Parses `.env.railway` and sets service-specific variables
+- **Health Checks**: Tests live endpoints and verifies deployment success
+- **URL Synchronization**: Updates live URLs back to environment variables
+- **Error Handling**: Comprehensive logging and graceful failure recovery
+
+### Environment Configuration
+
+Create `.env.railway` in the project root:
+
+```bash
+# Frontend Variables
+NEXT_PUBLIC_URL=https://kokotajlo.up.railway.app
+NEXT_PUBLIC_GA_MEASUREMENT_ID=YOUR_GA4_ID
+NEXT_PUBLIC_DEFAULT_LOCALE=fr
+NEXT_PUBLIC_LOCALES=fr,en
+NEXT_PUBLIC_API_URL=https://kokotajlo-backend.up.railway.app
+
+# Backend Variables
+OPENAI_API_KEY=sk-your-openai-key-here
+CORS_ORIGINS=https://kokotajlo.up.railway.app http://localhost:4000
+PORT=4001
+EMAIL_KEY=stub
+MAILJET_API_KEY=your-mailjet-key
+MAILJET_SECRET_KEY=your-mailjet-secret
+LOG_LEVEL=INFO
+DEBUG=false
+```
+
+### Service Architecture
+
+The script creates two Railway services:
+
+#### Frontend Service (Next.js)
+- **Build Command**: `npm ci && npm run build`
+- **Start Command**: `npm start`
+- **Port**: Auto-assigned by Railway
+- **Health Check**: `/` (root path)
+
+#### Backend Service (FastAPI)
+- **Build Command**: `cd backend && poetry install --no-dev`
+- **Start Command**: `cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT`
+- **Port**: Auto-assigned by Railway
+- **Health Check**: `/health` endpoint
+
+### Deployment Flow
+
+1. **Git Check**: Verify clean working directory and main branch
+2. **Project Link**: Connect to Railway project 'kokotajlo'
+3. **Environment Setup**: Parse and set environment variables per service
+4. **Service Deployment**: Deploy frontend and backend sequentially
+5. **Verification**: Test health endpoints and get live URLs
+6. **URL Update**: Sync live URLs back to environment variables
+7. **Final Check**: Confirm all services are responding
+
+### Monitoring & Troubleshooting
+
+After deployment, monitor your services:
+
+```bash
+# View deployment logs
+railway logs --service frontend
+railway logs --service backend
+
+# Check service URLs
+railway url --service frontend
+railway url --service backend
+
+# Monitor resource usage
+railway metrics --service frontend
+```
+
+### Cost Optimization
+
+- **Hobby Plan**: Free tier suitable for development ($0/month)
+- **Pro Plan**: Production-ready with scaling ($10/service/month)
+- **Estimated Total**: <$20/month for full production deployment
+- **Auto-scaling**: Handles traffic spikes automatically
+
+## Manual Deployment (Alternative)
 
 ## Prerequisites
 
