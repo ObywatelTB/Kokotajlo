@@ -63,7 +63,7 @@ export default function Home() {
             <div className="bg-gradient-to-br from-accent-50 to-accent-100 p-8 rounded-xl shadow-sm">
               <h3 className="text-2xl font-semibold text-black mb-4">Mengran Zhao</h3>
               <p className="text-foreground/70 leading-relaxed">
-                Développeuse d&apos;affaires chinoise de 33 ans, experte en marchés internationaux.
+                Développeur d&apos;affaires chinois de 33 ans, expert en marchés internationaux.
                 Spécialiste en expansion commerciale et en relations avec les entreprises européennes.
               </p>
             </div>
