@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ['nodejs-20']  # Bump to Node 20+ for React 19 stability
+
+[phases.install]
+cmds = ['npm ci --omit=dev']  # Enforce prod, avoids warn
+
+[phases.build]
+cmds = ['npm run build']
+
+[start]
+cmd = 'npm start'
