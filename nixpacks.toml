@@ -1,11 +1,15 @@
 [phases.setup]
-nixPkgs = ['nodejs_20']  # Underscore, not hyphen—matches Nixpkgs naming
+nixPkgs = ['nodejs_20']
 
 [phases.install]
-cmds = ['npm ci --omit=dev']  # Prod-only install, skips dev deps
+cmds = [
+  'npm ci --omit=dev'  # Prod install only; cache mount auto-applies here
+]
 
 [phases.build]
-cmds = ['npm run build']  # Next.js build to .next
+cmds = [
+  'npm run build'  # Just compile to .next—no second ci to avoid lock
+]
 
 [start]
-cmd = 'npm start'  # Ensures Next.js server runs on $PORT
+cmd = 'npm start'  # Serves .next on $PORT
