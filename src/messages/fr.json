@@ -78,6 +78,39 @@
       "cta_secondary": "En savoir plus"
     }
   },
+  "blog": {
+    "title": "Ressources et Blog",
+    "subtitle": "Guides experts sur l'IA conforme pour entreprises françaises – Insights sur AI Act, GDPR et agents IA",
+    "load_more": "Voir Plus d'Articles",
+    "read_more": "Lire la suite",
+    "chatbot_teaser": {
+      "title": "Posez vos questions sur ces topics",
+      "subtitle": "Notre chatbot IA est là pour répondre à vos questions spécifiques sur l'AI Act, le GDPR ou nos solutions d'agents IA"
+    },
+    "posts": [
+      {
+        "title": "Naviguer l'AI Act pour Agents IA Industriels",
+        "excerpt": "Comment nos solutions RAG/MCP assurent conformité dès le design. Découvrez les implications pratiques pour votre déploiement d'agents IA en entreprise.",
+        "date": "2025-09-01",
+        "slug": "ai-act-guide",
+        "read_time": "8 min de lecture"
+      },
+      {
+        "title": "GDPR et LLMs Locaux : Sécuriser Vos Données d'Entreprise",
+        "excerpt": "Intégration IoT avec raisonnement IA – Exemples pour manufacturing/vending. Pilotes personnalisés pour protection des données sensibles.",
+        "date": "2025-09-05",
+        "slug": "gdpr-llms-locaux",
+        "read_time": "6 min de lecture"
+      },
+      {
+        "title": "Cas d'Étude : Pilote IA pour Géant Français (€200k + Shares)",
+        "excerpt": "Remplacement tâches humaines via MCP – Notre approche duo polono-chinois pour scaling. Premier déploiement réussi avec retour sur investissement.",
+        "date": "2025-09-09",
+        "slug": "pilote-geant-francais",
+        "read_time": "10 min de lecture"
+      }
+    ]
+  },
   "common": {
     "loading": "Chargement...",
     "error": "Une erreur s'est produite",

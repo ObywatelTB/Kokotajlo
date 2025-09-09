@@ -150,6 +150,7 @@ cd backend && poetry run uvicorn main:app --host 0.0.0.0 --port $PORT
 - ✅ Subpages: /about, /services, /resources, /contact with French content and SEO
 - ✅ About Us: Detailed bios/mission; Emphasizes Polish-Chinese edge for French market.
 - ✅ Services: In-depth tech/pilot details; Bilingual: next-intl setup (FR default).
+- ✅ Resources/Blog: 3 French starter posts for SEO/authority; i18n-integrated for bilingual leads.
 
 ## Usage
 

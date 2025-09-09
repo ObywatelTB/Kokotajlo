@@ -78,6 +78,39 @@
       "cta_secondary": "Learn More"
     }
   },
+  "blog": {
+    "title": "Resources & Blog",
+    "subtitle": "Expert guides on compliant AI for French enterprises – Insights on AI Act, GDPR and AI agents",
+    "load_more": "Load More Articles",
+    "read_more": "Read more",
+    "chatbot_teaser": {
+      "title": "Ask questions about these topics",
+      "subtitle": "Our AI chatbot is here to answer your specific questions about AI Act, GDPR or our AI agent solutions"
+    },
+    "posts": [
+      {
+        "title": "Navigating AI Act for Industrial AI Agents",
+        "excerpt": "How our RAG/MCP solutions ensure compliance from design. Discover practical implications for your enterprise AI agent deployment.",
+        "date": "2025-09-01",
+        "slug": "ai-act-guide",
+        "read_time": "8 min read"
+      },
+      {
+        "title": "GDPR and Local LLMs: Securing Your Enterprise Data",
+        "excerpt": "IoT integration with AI reasoning – Examples for manufacturing/vending. Custom pilots for sensitive data protection.",
+        "date": "2025-09-05",
+        "slug": "gdpr-llms-locaux",
+        "read_time": "6 min read"
+      },
+      {
+        "title": "Case Study: AI Pilot for French Giant (€200k + Shares)",
+        "excerpt": "Human task replacement via MCP – Our Polish-Chinese duo approach for scaling. First successful deployment with ROI.",
+        "date": "2025-09-09",
+        "slug": "pilote-geant-francais",
+        "read_time": "10 min read"
+      }
+    ]
+  },
   "common": {
     "loading": "Loading...",
     "error": "An error occurred",
