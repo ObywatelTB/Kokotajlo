@@ -148,6 +148,7 @@ cd backend && poetry run uvicorn main:app --host 0.0.0.0 --port $PORT
 - ✅ Footer: French links/GDPR; Subpages: Stubs for full navigation. Run dev:frontend to test routes.
 - ✅ Navigation: Active state highlighting for current page
 - ✅ Subpages: /about, /services, /resources, /contact with French content and SEO
+- ✅ About Us: Detailed bios/mission; Emphasizes Polish-Chinese edge for French market.
 
 ## Usage
 
