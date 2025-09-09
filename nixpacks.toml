@@ -1,11 +1,11 @@
 [phases.setup]
-nixPkgs = ['nodejs-20']  # Bump to Node 20+ for React 19 stability
+nixPkgs = ['nodejs_20']  # Underscore, not hyphen—matches Nixpkgs naming
 
 [phases.install]
-cmds = ['npm ci --omit=dev']  # Enforce prod, avoids warn
+cmds = ['npm ci --omit=dev']  # Prod-only install, skips dev deps
 
 [phases.build]
-cmds = ['npm run build']
+cmds = ['npm run build']  # Next.js build to .next
 
 [start]
-cmd = 'npm start'
+cmd = 'npm start'  # Ensures Next.js server runs on $PORT
