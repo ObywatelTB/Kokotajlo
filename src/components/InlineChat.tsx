@@ -66,8 +66,21 @@ const InlineChat = ({ locale = 'fr', context = 'general' }: InlineChatProps) => 
     const text = input.trim();
     if (!text || isSending) return;
 
-    // Expand on first message
-    if (!isExpanded) setIsExpanded(true);
+    // Expand on first message and track conversation start
+    if (!isExpanded) {
+      setIsExpanded(true);
+
+      // Track conversation started
+      if (typeof window !== 'undefined' && window.trackEvent) {
+        window.trackEvent('Lead', 'Inline Chat Conversation Start', `${context} Inquiry`, undefined, {
+          event_params: {
+            source: 'inline_chat',
+            language: locale,
+            context: context
+          }
+        });
+      }
+    }
 
     const userMsg: ChatMessage = {
       id: `u-${Date.now()}`,
@@ -76,6 +89,19 @@ const InlineChat = ({ locale = 'fr', context = 'general' }: InlineChatProps) => 
     };
     setMessages(prev => [...prev, userMsg, { id: `l-${Date.now()}`, role: 'loading', content: '...' }]);
     setInput('');
+
+    // Track message sent
+    if (typeof window !== 'undefined' && window.trackEvent) {
+      window.trackEvent('Engagement', 'Inline Chat Message Sent', 'User Message', undefined, {
+        event_params: {
+          message_length: text.length,
+          context: context,
+          language: locale,
+          conversation_length: messages.length + 1
+        }
+      });
+    }
+
     setIsSending(true);
 
     try {
@@ -91,6 +117,19 @@ const InlineChat = ({ locale = 'fr', context = 'general' }: InlineChatProps) => 
       const data = await res.json();
       const botText = data.response || data.message || "Désolé, je n'ai pas pu répondre.";
       setMessages(prev => prev.filter(m => m.role !== 'loading').concat({ id: `b-${Date.now()}`, role: 'bot', content: botText }));
+
+      // Track bot response
+      if (typeof window !== 'undefined' && window.trackEvent) {
+        window.trackEvent('Engagement', 'Inline Chat Response Received', 'Bot Message', undefined, {
+          event_params: {
+            response_length: botText.length,
+            context: context,
+            language: locale,
+            conversation_length: messages.length + 2, // +2 for user and bot messages
+            has_error: !data.response && !data.message
+          }
+        });
+      }
     } catch {
       setMessages(prev => prev.filter(m => m.role !== 'loading').concat({ id: `e-${Date.now()}`, role: 'error', content: "Oups, réessayez !" }));
     } finally {
@@ -103,6 +142,17 @@ const InlineChat = ({ locale = 'fr', context = 'general' }: InlineChatProps) => 
   };
 
   const handleClear = () => {
+    // Track conversation cleared
+    if (typeof window !== 'undefined' && window.trackEvent) {
+      window.trackEvent('Engagement', 'Inline Chat Cleared', 'Manual Clear', undefined, {
+        event_params: {
+          context: context,
+          language: locale,
+          conversation_length: messages.length
+        }
+      });
+    }
+
     setMessages([]);
     setIsExpanded(false);
   };

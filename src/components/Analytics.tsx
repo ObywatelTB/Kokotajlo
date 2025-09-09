@@ -1,24 +1,31 @@
 'use client';
 
 import { useEffect } from 'react';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
+
+declare global {
+  interface Window {
+    trackEvent?: (category: string, action: string, label?: string, value?: number, customParams?: Record<string, unknown>) => void;
+  }
+}
 
 const Analytics = () => {
   useEffect(() => {
     if (process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID) {
       ReactGA.initialize(process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID);
-      ReactGA.pageview(window.location.pathname + window.location.search);
+      ReactGA.send({ hitType: 'pageview', page: window.location.pathname + window.location.search });
     }
   }, []);
 
   // Event tracking functions for lead generation
   useEffect(() => {
-    const trackEvent = (category: string, action: string, label?: string) => {
+    const trackEvent = (category: string, action: string, label?: string, value?: number, customParams?: Record<string, unknown>) => {
       if (process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID) {
-        ReactGA.event({
+        ReactGA.event(action, {
           category,
-          action,
           label,
+          value,
+          ...customParams,
         });
       }
     };

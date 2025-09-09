@@ -17,6 +17,17 @@ const CTAForm = () => {
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     console.log('CTA Form submitted with email:', email);
+
+    // Track successful form submission
+    if (typeof window !== 'undefined' && window.trackEvent) {
+      window.trackEvent('Lead', 'Contact Form Submit', 'CTA Form', undefined, {
+        event_params: {
+          form_type: 'cta_contact',
+          email_domain: email?.toString().split('@')[1] || 'unknown'
+        }
+      });
+    }
+
     setIsSubmitted(true);
     setIsSubmitting(false);
 

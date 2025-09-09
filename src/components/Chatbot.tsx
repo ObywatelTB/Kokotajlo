@@ -37,8 +37,24 @@ const Chatbot = ({ position = 'bottom-right', defaultOpen = false }: ChatbotProp
         timestamp: new Date(),
       };
       setMessages([initialMessage]);
+
+      // Track chatbot opened and conversation started
+      if (typeof window !== 'undefined' && window.trackEvent) {
+        window.trackEvent('Engagement', 'Chatbot Opened', 'Widget Click', undefined, {
+          event_params: {
+            position: position,
+            default_open: defaultOpen
+          }
+        });
+        window.trackEvent('Lead', 'Chat Conversation Start', 'Product Inquiry', undefined, {
+          event_params: {
+            source: 'chatbot_widget',
+            language: 'fr'
+          }
+        });
+      }
     }
-  }, [isOpen, messages.length]);
+  }, [isOpen, messages.length, position, defaultOpen]);
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
@@ -65,6 +81,17 @@ const Chatbot = ({ position = 'bottom-right', defaultOpen = false }: ChatbotProp
 
     setMessages(prev => [...prev, userMessage]);
     setInputMessage('');
+
+    // Track message sent
+    if (typeof window !== 'undefined' && window.trackEvent) {
+      window.trackEvent('Engagement', 'Chatbot Message Sent', 'User Message', undefined, {
+        event_params: {
+          message_length: inputMessage.trim().length,
+          conversation_length: messages.length + 1
+        }
+      });
+    }
+
     setIsLoading(true);
 
     try {
@@ -93,6 +120,17 @@ const Chatbot = ({ position = 'bottom-right', defaultOpen = false }: ChatbotProp
       };
 
       setMessages(prev => [...prev, botMessage]);
+
+      // Track bot response
+      if (typeof window !== 'undefined' && window.trackEvent) {
+        window.trackEvent('Engagement', 'Chatbot Response Received', 'Bot Message', undefined, {
+          event_params: {
+            response_length: botMessage.content.length,
+            conversation_length: messages.length + 2, // +2 for user and bot messages
+            has_error: !data.response
+          }
+        });
+      }
     } catch (error) {
       console.error('Chat error:', error);
       const errorMessage: Message = {
@@ -112,7 +150,7 @@ const Chatbot = ({ position = 'bottom-right', defaultOpen = false }: ChatbotProp
       <div className={`fixed ${positionClass} z-50`}>
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-accent-green hover:bg-green-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 group"
+          className="bg-accent hover:bg-accent-600 text-accent-content p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 group"
           aria-label="Ouvrir le chatbot"
         >
           <Bot className="h-6 w-6 group-hover:scale-110 transition-transform" />
@@ -123,11 +161,11 @@ const Chatbot = ({ position = 'bottom-right', defaultOpen = false }: ChatbotProp
 
   return (
     <div className={`fixed ${positionClass} z-50`}>
-      <div className={`bg-white shadow-2xl rounded-lg border border-gray-200 transition-all duration-200 ${
+      <div className={`bg-background shadow-2xl rounded-lg border border-border transition-all duration-200 ${
         isMinimized ? 'w-80 h-14' : 'w-80 h-96'
       }`}>
         {/* Header */}
-        <div className="bg-primary-blue text-white p-4 rounded-t-lg flex items-center justify-between">
+        <div className="bg-primary text-primary-content p-4 rounded-t-lg flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Bot className="h-5 w-5" />
             <span className="font-semibold">Assistant IA Kokotajlo</span>
@@ -135,14 +173,25 @@ const Chatbot = ({ position = 'bottom-right', defaultOpen = false }: ChatbotProp
           <div className="flex items-center space-x-1">
             <button
               onClick={() => setIsMinimized(!isMinimized)}
-              className="hover:bg-blue-700 p-1 rounded transition-colors"
+              className="hover:bg-primary-600 p-1 rounded transition-colors"
               aria-label={isMinimized ? "Agrandir" : "Réduire"}
             >
               <Minimize2 className="h-4 w-4" />
             </button>
             <button
-              onClick={() => setIsOpen(false)}
-              className="hover:bg-blue-700 p-1 rounded transition-colors"
+              onClick={() => {
+                // Track chatbot closed
+                if (typeof window !== 'undefined' && window.trackEvent) {
+                  window.trackEvent('Engagement', 'Chatbot Closed', 'Manual Close', undefined, {
+                    event_params: {
+                      conversation_length: messages.length,
+                      had_interaction: messages.length > 1
+                    }
+                  });
+                }
+                setIsOpen(false);
+              }}
+              className="hover:bg-primary-600 p-1 rounded transition-colors"
               aria-label="Fermer"
             >
               <X className="h-4 w-4" />
@@ -163,8 +212,8 @@ const Chatbot = ({ position = 'bottom-right', defaultOpen = false }: ChatbotProp
                   <div
                     className={`max-w-xs px-4 py-2 rounded-lg ${
                       message.isBot
-                        ? 'bg-gray-100 text-gray-800'
-                        : 'bg-accent-green text-white'
+                        ? 'bg-foreground/5 text-foreground'
+                        : 'bg-accent text-accent-content'
                     }`}
                   >
                     <p className="text-sm">{message.content}</p>
@@ -179,11 +228,11 @@ const Chatbot = ({ position = 'bottom-right', defaultOpen = false }: ChatbotProp
               ))}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-gray-100 text-gray-800 px-4 py-2 rounded-lg">
+                  <div className="bg-foreground/5 text-foreground px-4 py-2 rounded-lg">
                     <div className="flex space-x-1">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                      <div className="w-2 h-2 bg-foreground/50 rounded-full animate-bounce"></div>
+                      <div className="w-2 h-2 bg-foreground/50 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                      <div className="w-2 h-2 bg-foreground/50 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                     </div>
                   </div>
                 </div>
@@ -192,7 +241,7 @@ const Chatbot = ({ position = 'bottom-right', defaultOpen = false }: ChatbotProp
             </div>
 
             {/* Input Form */}
-            <div className="border-t border-gray-200 p-4">
+            <div className="border-t border-border p-4">
               <form onSubmit={sendMessage} className="flex space-x-2">
                 <input
                   ref={inputRef}
@@ -200,13 +249,13 @@ const Chatbot = ({ position = 'bottom-right', defaultOpen = false }: ChatbotProp
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
                   placeholder="Tapez votre message..."
-                  className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent-green focus:border-transparent"
+                  className="flex-1 border border-border rounded-lg px-3 py-2 text-sm bg-background text-foreground placeholder:text-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent-300 focus:border-transparent"
                   disabled={isLoading}
                 />
                 <button
                   type="submit"
                   disabled={!inputMessage.trim() || isLoading}
-                  className="bg-accent-green hover:bg-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white p-2 rounded-lg transition-colors"
+                  className="bg-accent hover:bg-accent-600 disabled:bg-foreground/30 disabled:cursor-not-allowed text-accent-content p-2 rounded-lg transition-colors btn"
                   aria-label="Envoyer"
                 >
                   <Send className="h-4 w-4" />
