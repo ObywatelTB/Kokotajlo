@@ -357,14 +357,16 @@ async def shutdown_event():
     # TODO: Close database connections, cleanup resources, etc.
 
 if __name__ == "__main__":
-    host = os.getenv("API_HOST", "0.0.0.0")
-    port = int(os.getenv("API_PORT", 4001))
+    # Dual-stack: IPv4 for public/health, IPv6 for private
+    host = ["0.0.0.0", "::"]
+    # Use $PORT (Railway sets to 8080)
+    port = int(os.getenv("PORT", os.getenv("API_PORT", 4001)))
     debug = os.getenv("DEBUG", "False").lower() == "true"
     log_level = os.getenv("LOG_LEVEL", "INFO")
 
     uvicorn.run(
         "main:app",
-        host="::",
+        host=host,  # List creates separate sockets for each
         port=port,
         reload=debug,
         log_level=log_level
