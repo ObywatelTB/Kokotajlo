@@ -13,7 +13,7 @@ from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
 import os
 from dotenv import load_dotenv
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List
 import logging
 import uvicorn
 from openai import OpenAI
@@ -65,7 +65,7 @@ class ContactResponse(BaseModel):
 # Initialize OpenAI client (only if API key is available)
 openai_api_key = os.getenv("OPENAI_API_KEY")
 if openai_api_key and openai_api_key != "stub":
-    openai_client = OpenAI(api_key=openai_api_key)
+    openai_client: Optional[OpenAI] = OpenAI(api_key=openai_api_key)
     OPENAI_AVAILABLE = True
 else:
     openai_client = None
@@ -149,11 +149,18 @@ async def chat_endpoint(request: Request, chat_request: ChatRequest):
     """
     Chat endpoint with OpenAI GPT-4o-mini integration
     Rate limited to 10 requests per minute
-    Accepts ChatRequest with message, optional language and context
+    Accepts ChatRequest with message (or query fallback), optional language and context
     """
     try:
-        import random
         from datetime import datetime
+        import random
+
+        # Normalize input: Accept 'query' or 'message' from frontend
+        message = chat_request.message or getattr(
+            chat_request, 'query', 'No message provided')
+        # Log for Railway
+        logger.info(
+            f"Chat request received: {message[:50]}... (lang: {chat_request.language})")
 
         # Check if OpenAI is available
         if OPENAI_AVAILABLE and openai_client:
@@ -161,23 +168,23 @@ async def chat_endpoint(request: Request, chat_request: ChatRequest):
                 # Prepare messages for OpenAI
                 messages = [
                     {"role": "system", "content": KOKOTAJLO_SYSTEM_PROMPT},
-                    {"role": "user", "content": chat_request.message}
+                    {"role": "user", "content": message}
                 ]
 
                 # Call OpenAI API
                 response = openai_client.chat.completions.create(
                     model="gpt-4o-mini",
-                    messages=messages,
-                    max_tokens=200,  # Keep responses concise
-                    temperature=0.7,  # Balanced creativity
+                    messages=messages,  # type: ignore
+                    max_tokens=200,
+                    temperature=0.7,
                 )
 
-                # Extract response
-                ai_response = response.choices[0].message.content.strip()
+                ai_response = response.choices[0].message.content or ""
 
-                # Fallback if OpenAI fails
                 if not ai_response:
                     ai_response = "Désolé, je n'ai pas pu générer une réponse appropriée. Contactez-nous directement pour en savoir plus sur nos services."
+                else:
+                    ai_response = ai_response.strip()
 
                 return ChatResponse(
                     response=ai_response,
@@ -187,9 +194,9 @@ async def chat_endpoint(request: Request, chat_request: ChatRequest):
                 )
             except Exception as e:
                 logger.error(f"OpenAI API error: {str(e)}")
-                # Fall through to fallback responses
+                # Fall through to fallback
 
-        # Fallback responses when OpenAI is not available or fails
+        # Fallback responses (triggers if no OpenAI or error)
         fallback_responses = [
             "Bonjour ! Je suis l'assistant virtuel de Kokotajlo. Nous créons des agents IA conformes pour les entreprises françaises.",
             "Ah, l'automatisation ! Comme remplacer un café par un distributeur automatique, mais en plus intelligent. Que souhaitez-vous automatiser dans votre entreprise ?",
@@ -209,14 +216,8 @@ async def chat_endpoint(request: Request, chat_request: ChatRequest):
         )
     except Exception as e:
         logger.error(f"Chat endpoint error: {str(e)}")
-
-        # Final fallback in case of any error
-        return ChatResponse(
-            response="Désolé, une erreur s'est produite. Veuillez réessayer ou nous contacter directement.",
-            language=chat_request.language or "fr",
-            timestamp=datetime.utcnow().isoformat() + "Z",
-            conversation_id=f"conv_error_{random.randint(1000, 9999)}"
-        )
+        raise HTTPException(
+            status_code=500, detail="Erreur lors du traitement de la requête chat")
 
 # Contact endpoint with Mailjet stub
 
