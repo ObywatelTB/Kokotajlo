@@ -358,7 +358,7 @@ async def shutdown_event():
 
 if __name__ == "__main__":
     # Dual-stack: IPv4 for public/health, IPv6 for private
-    host = ["0.0.0.0", "::"]
+    host = os.getenv("HOST", "0.0.0.0")
     # Use $PORT (Railway sets to 8080)
     port = int(os.getenv("PORT", os.getenv("API_PORT", 4001)))
     debug = os.getenv("DEBUG", "False").lower() == "true"
