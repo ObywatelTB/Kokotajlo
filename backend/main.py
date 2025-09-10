@@ -346,6 +346,7 @@ async def general_exception_handler(request: Request, exc: Exception):
 async def startup_event():
     """Application startup event"""
     logger.info("Starting Kokotajlo backend...")
+    logger.debug("Starting Kokotajlo backend in debug mode...")
     # TODO: Initialize database connections, AI clients, etc.
 
 
