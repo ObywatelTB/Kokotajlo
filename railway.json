@@ -25,12 +25,6 @@
           "fromService": {
             "type": "url"
           }
-        },
-        "NEXT_PUBLIC_API_URL": {
-          "fromService": {
-            "name": "backend",
-            "type": "url"
-          }
         }
       }
     },
