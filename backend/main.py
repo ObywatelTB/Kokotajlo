@@ -360,11 +360,12 @@ if __name__ == "__main__":
     host = os.getenv("API_HOST", "0.0.0.0")
     port = int(os.getenv("API_PORT", 4001))
     debug = os.getenv("DEBUG", "False").lower() == "true"
+    log_level = os.getenv("LOG_LEVEL", "info")
 
     uvicorn.run(
         "main:app",
-        host=host,
+        host="::",
         port=port,
         reload=debug,
-        log_level="info"
+        log_level=log_level
     )
