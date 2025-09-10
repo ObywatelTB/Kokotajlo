@@ -28,6 +28,8 @@ export async function POST(request: NextRequest) {
 
     // Backend configuration
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:4001';
+    console.log(`[${timestamp}] [${requestId}] Proxy URL:`, backendUrl);
+    console.log(`[${timestamp}] [${requestId}] Incoming body:`, JSON.stringify(body));
     console.log(`[${timestamp}] [${requestId}] Proxying to backend: ${backendUrl}/chat`);
 
     // Make backend request
@@ -44,21 +46,20 @@ export async function POST(request: NextRequest) {
     });
 
     const responseTime = Date.now() - startTime;
-    console.log(`[${timestamp}] [${requestId}] Backend response: status=${response.status}, time=${responseTime}ms`);
+    console.log(`[${timestamp}] [${requestId}] Backend status:`, response.status);
+    console.log(`[${timestamp}] [${requestId}] Backend headers:`, response.headers.get('content-type'));
+    console.log(`[${timestamp}] [${requestId}] Backend response time: ${responseTime}ms`);
 
     // Handle non-OK responses
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error(`[${timestamp}] [${requestId}] Backend error response:`, {
-        status: response.status,
-        statusText: response.statusText,
-        body: errorText
-      });
-      throw new Error(`Backend responded with status: ${response.status}`);
+      const errorBody = await response.text();
+      console.error(`[${timestamp}] [${requestId}] Backend error body:`, errorBody);
+      throw new Error(`Backend failed: ${response.status} - ${errorBody}`);
     }
 
     // Parse successful response
     const data = await response.json();
+    console.log(`[${timestamp}] [${requestId}] Backend data preview:`, data.response?.substring(0, 50));
     console.log(`[${timestamp}] [${requestId}] Backend success response:`, {
       hasResponse: !!data.response,
       responseLength: data.response?.length || 0,
@@ -69,22 +70,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(data);
 
   } catch (error) {
-    const errorDetails = error instanceof Error ? {
-      message: error.message,
-      stack: error.stack,
-      name: error.name
-    } : {
-      message: String(error),
-      stack: undefined,
-      name: 'UnknownError'
-    };
-
-    console.error(`[${timestamp}] [${requestId}] Chat API error:`, errorDetails);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error(`[${timestamp}] [${requestId}] Proxy error details:`, errorMessage);
 
     return NextResponse.json(
       {
         error: 'Erreur de communication avec le serveur',
-        response: 'Désolé, une erreur technique s\'est produite. Veuillez réessayer.'
+        details: errorMessage
       },
       { status: 500 }
     );
