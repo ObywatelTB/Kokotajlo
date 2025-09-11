@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
   try {
     // Parse request body
     const body = await request.json();
-    const { message, language = 'fr' } = body;
+    const { message, language = 'fr', context } = body;
 
     console.log(`[${timestamp}] [${requestId}] Request body:`, {
       message: message?.substring(0, 100) + (message?.length > 100 ? '...' : ''),
@@ -42,6 +42,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         message,
         language,
+        context: context && typeof context === 'object' ? context : undefined,
       }),
     });
 

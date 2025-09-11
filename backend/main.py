@@ -18,6 +18,7 @@ import logging
 import uvicorn
 from openai import OpenAI
 import yaml
+from pathlib import Path
 
 # Load environment variables
 load_dotenv()
@@ -94,8 +95,14 @@ else:
     logger.warning("OpenAI API key not configured - using fallback responses")
 
 # Load prompts from YAML files
-SYSTEM_PROMPTS = load_prompts("../src/prompts/system.yaml")
-FALLBACK_PROMPTS = load_prompts("../src/prompts/fallback.yaml")
+# Get the directory of the current file and construct paths to YAML files
+current_dir = Path(__file__).parent
+prompts_dir = current_dir.parent / "src" / "prompts"
+system_prompts_file = prompts_dir / "system.yaml"
+fallback_prompts_file = prompts_dir / "fallback.yaml"
+
+SYSTEM_PROMPTS = load_prompts(str(system_prompts_file))
+FALLBACK_PROMPTS = load_prompts(str(fallback_prompts_file))
 
 
 def get_system_prompt(language: str = "fr", context: Optional[Dict[str, Any]] = None) -> str:
@@ -105,14 +112,20 @@ def get_system_prompt(language: str = "fr", context: Optional[Dict[str, Any]] = 
         context_key = "general"
         if context and "page" in context:
             context_key = context["page"]
+        else:
+            logger.debug(
+                f"No context provided or missing page key, using default 'general' context")
 
         # Get prompt from YAML directly by context key
         prompt = SYSTEM_PROMPTS.get(context_key, {}).get("system_prompt")
         if prompt:
+            logger.debug(f"Using system prompt for context: {context_key}")
             return prompt.strip()
 
         # Try fallback to general context
         if context_key != "general":
+            logger.warning(
+                f"Context '{context_key}' not found, falling back to 'general'")
             prompt = SYSTEM_PROMPTS.get("general", {}).get("system_prompt")
             if prompt:
                 return prompt.strip()
@@ -121,6 +134,7 @@ def get_system_prompt(language: str = "fr", context: Optional[Dict[str, Any]] = 
         logger.warning(f"Error retrieving system prompt: {str(e)}")
 
     # Final fallback when all else fails
+    logger.warning("Using final fallback system prompt")
     return "You are a helpful AI assistant for Kokotajlo, a startup building AI solutions for French businesses. Always respond in French by default."
 
 

@@ -1,7 +1,8 @@
 'use client';
 
 import { Bot, Minimize2, Send, X } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 interface Message {
   id: string;
@@ -24,6 +25,16 @@ const Chatbot = ({ position = 'bottom-right', defaultOpen = false }: ChatbotProp
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const pathname = usePathname();
+
+  // Derive page context from pathname
+  const context = useMemo(() => {
+    if (pathname.includes('/resources')) return 'resources';
+    if (pathname.includes('/contact')) return 'contact';
+    if (pathname.includes('/services')) return 'services';
+    if (pathname.includes('/about')) return 'about';
+    return 'general';
+  }, [pathname]);
 
   const positionClass = position === 'top-right' ? 'top-4 right-4' : 'bottom-4 right-4';
 
@@ -103,6 +114,7 @@ const Chatbot = ({ position = 'bottom-right', defaultOpen = false }: ChatbotProp
         body: JSON.stringify({
           message: userMessage.content,
           language: 'fr',
+          context: { page: context },
         }),
       });
 
