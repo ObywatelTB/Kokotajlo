@@ -17,9 +17,13 @@ from typing import Optional, Dict, Any, List
 import logging
 import uvicorn
 from openai import OpenAI
+import yaml
 
 # Load environment variables
 load_dotenv()
+
+# Constants
+OPENAI_MODEL = "gpt-4o-mini"
 
 # Configure logging
 logging.basicConfig(
@@ -27,6 +31,23 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
+
+
+def load_prompts(file_path: str) -> dict:
+    """Load prompts from YAML file with error handling."""
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            return yaml.safe_load(f)
+    except FileNotFoundError:
+        logger.error(f"Prompts file not found: {file_path}")
+        return {}
+    except yaml.YAMLError as e:
+        logger.error(f"Error parsing YAML file {file_path}: {str(e)}")
+        return {}
+    except Exception as e:
+        logger.error(
+            f"Unexpected error loading prompts from {file_path}: {str(e)}")
+        return {}
 
 # Pydantic models
 
@@ -72,26 +93,70 @@ else:
     OPENAI_AVAILABLE = False
     logger.warning("OpenAI API key not configured - using fallback responses")
 
-# System prompt for Kokotajlo chatbot
-KOKOTAJLO_SYSTEM_PROMPT = """You are a witty AI assistant for Kokotajlo, a Polish-Chinese startup building GDPR and AI Act-ready AI agents for French businesses.
+# Load prompts from YAML files
+SYSTEM_PROMPTS = load_prompts("../src/prompts/system.yaml")
+FALLBACK_PROMPTS = load_prompts("../src/prompts/fallback.yaml")
 
-Key facts about Kokotajlo:
-- Duo: Polish software engineer (Tobias) + Chinese business developer (Mengran Zhao)
-- Focus: Local LLMs, RAG (Retrieval-Augmented Generation), MCP (Model Context Protocol)
-- Target: French enterprises, especially industrial/manufacturing sectors
-- Value prop: Compliant AI agents that replace human tasks, IoT automation
-- Business model: €200k pilot projects + equity for runway
-- Compliance: Ready for AI Act and GDPR from day one
 
-Your personality:
-- Witty and engaging
-- Professional but approachable
-- Respond in French by default, but can switch to English if requested
-- Keep responses under 150 words
-- Always promote the pilot program and partnership opportunities
-- Emphasize compliance and local AI benefits
+def get_system_prompt(language: str = "fr", context: Optional[Dict[str, Any]] = None) -> str:
+    """Get system prompt based on context (language handled within prompt)."""
+    try:
+        # Default to general context if no context provided
+        context_key = "general"
+        if context and "page" in context:
+            context_key = context["page"]
 
-Be helpful, informative, and encouraging about AI adoption in French businesses."""
+        # Get prompt from YAML directly by context key
+        prompt = SYSTEM_PROMPTS.get(context_key, {}).get("system_prompt")
+        if prompt:
+            return prompt.strip()
+
+        # Try fallback to general context
+        if context_key != "general":
+            prompt = SYSTEM_PROMPTS.get("general", {}).get("system_prompt")
+            if prompt:
+                return prompt.strip()
+
+    except Exception as e:
+        logger.warning(f"Error retrieving system prompt: {str(e)}")
+
+    # Final fallback when all else fails
+    return "You are a helpful AI assistant for Kokotajlo, a startup building AI solutions for French businesses. Always respond in French by default."
+
+
+def get_fallback_responses(language: str = "fr", context: Optional[Dict[str, Any]] = None) -> List[str]:
+    """Get fallback responses based on language and context."""
+    try:
+        # Default to general context if no context provided
+        context_key = "general"
+        if context and "page" in context:
+            context_key = context["page"]
+
+        # Get responses from YAML
+        responses = FALLBACK_PROMPTS.get(language, {}).get(
+            context_key, {}).get("responses", [])
+        if responses:
+            return responses
+
+        # Try fallback to general context in same language
+        if context_key != "general":
+            responses = FALLBACK_PROMPTS.get(language, {}).get(
+                "general", {}).get("responses", [])
+            if responses:
+                return responses
+
+        # Try English fallback
+        responses = FALLBACK_PROMPTS.get("en", {}).get(
+            "general", {}).get("responses", [])
+        if responses:
+            return responses
+
+    except Exception as e:
+        logger.warning(f"Error retrieving fallback responses: {str(e)}")
+
+    # Final fallback when all else fails
+    return ["Bonjour! Je suis l'assistant virtuel de Kokotajlo. Comment puis-je vous aider aujourd'hui?"]
+
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -165,15 +230,19 @@ async def chat_endpoint(request: Request, chat_request: ChatRequest):
         # Check if OpenAI is available
         if OPENAI_AVAILABLE and openai_client:
             try:
+                # Get dynamic system prompt based on language and context
+                system_prompt = get_system_prompt(
+                    chat_request.language, chat_request.context)
+
                 # Prepare messages for OpenAI
                 messages = [
-                    {"role": "system", "content": KOKOTAJLO_SYSTEM_PROMPT},
+                    {"role": "system", "content": system_prompt},
                     {"role": "user", "content": message}
                 ]
 
                 # Call OpenAI API
                 response = openai_client.chat.completions.create(
-                    model="gpt-4o-mini",
+                    model=OPENAI_MODEL,
                     messages=messages,  # type: ignore
                     max_tokens=200,
                     temperature=0.7,
@@ -196,17 +265,9 @@ async def chat_endpoint(request: Request, chat_request: ChatRequest):
                 logger.error(f"OpenAI API error: {str(e)}")
                 # Fall through to fallback
 
-        # Fallback responses (triggers if no OpenAI or error)
-        fallback_responses = [
-            "Bonjour ! Je suis l'assistant virtuel de Kokotajlo. Nous créons des agents IA conformes pour les entreprises françaises.",
-            "Ah, l'automatisation ! Comme remplacer un café par un distributeur automatique, mais en plus intelligent. Que souhaitez-vous automatiser dans votre entreprise ?",
-            "Pilote personnalisé ? C'est comme un essai avant mariage avec l'IA. €200k + equity, c'est notre façon de dire 'nous croyons en votre succès'. Parlons-en !",
-            "RAG + MCP + IoT = la sainte trinité de l'industrie 4.0. Vos machines vont enfin pouvoir discuter entre elles... en français bien sûr !",
-            "GDPR + AI Act ? C'est notre devise. Nous codons comme des moines copistes : avec dévotion et sans faute. Votre conformité est notre religion.",
-            "De la Pologne à la France, en passant par la Chine : notre équipe est aussi internationale que vos ambitions. Prêt pour le pilote ?",
-            "Agents IA locaux avec LLMs hébergés en sécurité ? C'est notre spécialité ! Protégeons vos données tout en automatisant vos processus.",
-            "Industrie 4.0 vous appelle ? Notre solution IoT avec raisonnement IA transforme vos machines en partenaires intelligents.",
-        ]
+        # Get dynamic fallback responses based on language and context
+        fallback_responses = get_fallback_responses(
+            chat_request.language, chat_request.context)
 
         return ChatResponse(
             response=random.choice(fallback_responses),
@@ -362,7 +423,21 @@ if __name__ == "__main__":
     # Use $PORT (Railway sets to 8080)
     port = int(os.getenv("PORT", os.getenv("API_PORT", 4001)))
     debug = os.getenv("DEBUG", "False").lower() == "true"
-    log_level = os.getenv("LOG_LEVEL", "INFO")
+    log_level_str = os.getenv("LOG_LEVEL", "info").lower()
+
+    # Convert log level string to uvicorn format
+    if log_level_str == "debug":
+        log_level = "debug"
+    elif log_level_str == "info":
+        log_level = "info"
+    elif log_level_str == "warning":
+        log_level = "warning"
+    elif log_level_str == "error":
+        log_level = "error"
+    elif log_level_str == "critical":
+        log_level = "critical"
+    else:
+        log_level = "info"  # default
 
     uvicorn.run(
         "main:app",

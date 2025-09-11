@@ -10,6 +10,13 @@ npm install && npm run dev:all
 npm run build && npm start
 ```
 
+### Prompt creation
+```bash
+files-to-prompt  . -o llm-data/concat.txt -e .py -e .tsx -e .ts
+
+files-to-prompt  . -o llm-data/concat.txt -e .py -e .tsx -e .ts -e .css
+```
+
 ## Overview
 
 Kokotajlo is a comprehensive monorepo project for French enterprise AI solutions:

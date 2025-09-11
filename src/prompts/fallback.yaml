@@ -1,0 +1,95 @@
+fr:
+  general:
+    # General fallback responses for when AI service is unavailable
+    responses:
+      - "Bonjour ! Je suis l'assistant virtuel de Kokotajlo. Nous créons des agents IA conformes pour les entreprises françaises."
+      - "Ah, l'automatisation ! Comme remplacer un café par un distributeur automatique, mais en plus intelligent. Que souhaitez-vous automatiser dans votre entreprise ?"
+      - "Pilote personnalisé ? C'est comme un essai avant mariage avec l'IA. €200k + equity, c'est notre façon de dire 'nous croyons en votre succès'. Parlons-en !"
+      - "RAG + MCP + IoT = la sainte trinité de l'industrie 4.0. Vos machines vont enfin pouvoir discuter entre elles... en français bien sûr !"
+      - "GDPR + AI Act ? C'est notre devise. Nous codons comme des moines copistes : avec dévotion et sans faute. Votre conformité est notre religion."
+      - "De la Pologne à la France, en passant par la Chine : notre équipe est aussi internationale que vos ambitions. Prêt pour le pilote ?"
+      - "Agents IA locaux avec LLMs hébergés en sécurité ? C'est notre spécialité ! Protégeons vos données tout en automatisant vos processus."
+      - "Industrie 4.0 vous appelle ? Notre solution IoT avec raisonnement IA transforme vos machines en partenaires intelligents."
+
+  resources:
+    # Fallback responses specific to resources page
+    responses:
+      - "Découvrez nos ressources sur les agents IA conformes. Nous expliquons comment RAG et MCP peuvent transformer votre entreprise industrielle."
+      - "Besoin d'informations sur nos solutions IA ? Nos ressources détaillent notre approche unique pour l'automatisation industrielle."
+      - "Explorez nos études de cas et guides techniques. Chaque projet commence par €200k + equity pour prouver notre valeur."
+      - "Comprenez comment nous intégrons GDPR et AI Act dans nos solutions. La conformité n'est pas une option, c'est notre fondation."
+      - "Questions sur l'IoT et l'automatisation ? Nos ressources expliquent comment nos agents IA communiquent avec vos équipements."
+
+  contact:
+    # Fallback responses for contact page
+    responses:
+      - "Prêt à commencer votre transformation IA ? Remplissez notre formulaire de contact pour discuter de votre projet pilote."
+      - "Notre équipe analyse chaque demande sous 24h. €200k + equity pour démarrer votre aventure avec Kokotajlo."
+      - "Des questions sur nos tarifs ou notre approche ? Contactez-nous directement via le formulaire ci-dessous."
+      - "De l'idée au pilote en quelques semaines. Discutons de vos besoins spécifiques en automatisation industrielle."
+
+  about:
+    # Fallback responses for about page
+    responses:
+      - "Découvrez l'histoire de Kokotajlo : un duo polono-chinois passionné par l'IA pour les entreprises françaises."
+      - "Notre équipe internationale apporte le meilleur de l'innovation mondiale avec une attention locale pour la France."
+      - "De la Pologne à la Chine en passant par la France : notre parcours reflète notre vision globale et locale."
+      - "Fondée par des experts techniques et business, Kokotajlo allie compétence technique et compréhension marché."
+      - "Notre mission : rendre l'IA accessible et conforme pour les PME et ETI françaises."
+
+  services:
+    # Fallback responses for services page
+    responses:
+      - "Nos services incluent le développement d'agents IA personnalisés avec RAG, MCP et intégration IoT."
+      - "Nous proposons des pilotes à €200k + equity pour prouver la valeur de nos solutions d'automatisation."
+      - "Conformité GDPR et AI Act intégrée dès la conception de chaque agent IA."
+      - "Support technique continu et optimisation des performances pour vos agents IA."
+      - "Intégration transparente avec vos systèmes existants grâce à notre approche modulaire."
+
+en:
+  general:
+    # General fallback responses in English
+    responses:
+      - "Hello! I'm Kokotajlo's virtual assistant. We create compliant AI agents for French businesses."
+      - "Ah, automation! Like replacing coffee with a vending machine, but much smarter. What would you like to automate in your business?"
+      - "Custom pilot? It's like a trial marriage with AI. €200k + equity is our way of saying 'we believe in your success'. Let's talk!"
+      - "RAG + MCP + IoT = the holy trinity of Industry 4.0. Your machines will finally be able to talk to each other... in French of course!"
+      - "GDPR + AI Act? That's our motto. We code like monks copying manuscripts: with devotion and without fault. Your compliance is our religion."
+      - "From Poland to France, via China: our team is as international as your ambitions. Ready for the pilot?"
+      - "Local AI agents with securely hosted LLMs? That's our specialty! We protect your data while automating your processes."
+      - "Industry 4.0 calling? Our IoT solution with AI reasoning transforms your machines into intelligent partners."
+
+  resources:
+    # Fallback responses specific to resources page in English
+    responses:
+      - "Discover our resources on compliant AI agents. We explain how RAG and MCP can transform your industrial business."
+      - "Need information about our AI solutions? Our resources detail our unique approach to industrial automation."
+      - "Explore our case studies and technical guides. Each project starts with €200k + equity to prove our value."
+      - "Understand how we integrate GDPR and AI Act into our solutions. Compliance isn't an option, it's our foundation."
+      - "Questions about IoT and automation? Our resources explain how our AI agents communicate with your equipment."
+
+  contact:
+    # Fallback responses for contact page in English
+    responses:
+      - "Ready to start your AI transformation? Fill out our contact form to discuss your pilot project."
+      - "Our team analyzes each request within 24 hours. €200k + equity to start your adventure with Kokotajlo."
+      - "Questions about our pricing or approach? Contact us directly through the form below."
+      - "From idea to pilot in just a few weeks. Let's discuss your specific industrial automation needs."
+
+  about:
+    # Fallback responses for about page in English
+    responses:
+      - "Discover Kokotajlo's story: a Polish-Chinese duo passionate about AI for French businesses."
+      - "Our international team brings the best of global innovation with local focus on France."
+      - "From Poland to China via France: our journey reflects our global vision and local commitment."
+      - "Founded by technical and business experts, Kokotajlo combines technical competence with market understanding."
+      - "Our mission: making AI accessible and compliant for French SMEs and mid-sized companies."
+
+  services:
+    # Fallback responses for services page in English
+    responses:
+      - "Our services include custom AI agent development with RAG, MCP and IoT integration."
+      - "We offer €200k + equity pilots to prove the value of our automation solutions."
+      - "GDPR and AI Act compliance integrated from the design of each AI agent."
+      - "Continuous technical support and performance optimization for your AI agents."
+      - "Seamless integration with your existing systems through our modular approach."
