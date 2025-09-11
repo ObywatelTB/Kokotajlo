@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import InlineChat from './InlineChat';
 
@@ -28,23 +28,43 @@ const ChatbotWrapper = () => {
   }, [pathname]);
 
   const portalHostRef = useRef<HTMLDivElement | null>(null);
+  const [isPortalReady, setIsPortalReady] = useState(false);
 
   useEffect(() => {
-    if (isHomePage) return; // Home already has InlineChat in hero
+    if (isHomePage) {
+      setIsPortalReady(false);
+      return;
+    }
 
-    // Find all sections inside main and pick the last one (bottom of page)
-    const sections = Array.from(document.querySelectorAll('main section')) as HTMLElement[];
-    const lastSection = sections.length > 0 ? sections[sections.length - 1] : null;
-    if (!lastSection) return;
+    // Small delay to ensure DOM is fully rendered
+    const timeoutId = setTimeout(() => {
+      // Find all sections inside main and pick the last one (bottom of page)
+      // Look for sections directly in main or nested deeper
+      let sections = Array.from(document.querySelectorAll('main section, main > div > section')) as HTMLElement[];
 
-    // Create a host container inside the last section (small vertical margins)
-    const host = document.createElement('div');
-    host.className = 'px-4 my-6';
-    lastSection.appendChild(host);
+      // Fallback: if no sections found, look for any section on the page
+      if (sections.length === 0) {
+        sections = Array.from(document.querySelectorAll('section')) as HTMLElement[];
+      }
 
-    portalHostRef.current = host;
+      const lastSection = sections.length > 0 ? sections[sections.length - 1] : null;
+      if (!lastSection) {
+        setIsPortalReady(false);
+        return;
+      }
+
+      // Create a host container inside the last section (small vertical margins)
+      const host = document.createElement('div');
+      host.className = 'px-4 my-6';
+      lastSection.appendChild(host);
+
+      portalHostRef.current = host;
+      setIsPortalReady(true);
+    }, 100); // 100ms delay
 
     return () => {
+      clearTimeout(timeoutId);
+      setIsPortalReady(false);
       if (portalHostRef.current && portalHostRef.current.parentElement) {
         portalHostRef.current.parentElement.removeChild(portalHostRef.current);
       }
@@ -53,7 +73,7 @@ const ChatbotWrapper = () => {
   }, [isHomePage, pathname]);
 
   if (isHomePage) return null;
-  if (!portalHostRef.current) return null;
+  if (!isPortalReady || !portalHostRef.current) return null;
 
   // Render InlineChat into the hero/top section so it inherits that background
   return createPortal(
