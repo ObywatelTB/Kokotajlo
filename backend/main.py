@@ -17,14 +17,16 @@ from typing import Optional, Dict, Any, List
 import logging
 import uvicorn
 from openai import OpenAI
-import yaml
+import yaml  # type: ignore
 from pathlib import Path
+import requests  # type: ignore
 
 # Load environment variables
 load_dotenv()
 
 # Constants
 OPENAI_MODEL = "gpt-4o-mini"
+N8N_URL = os.getenv("N8N_URL", "")
 
 # Configure logging
 logging.basicConfig(
@@ -172,6 +174,77 @@ def get_fallback_responses(language: str = "fr", context: Optional[Dict[str, Any
     return ["Bonjour! Je suis l'assistant virtuel de Kokotajlo. Comment puis-je vous aider aujourd'hui?"]
 
 
+def call_n8n_chat_agent(chat_request: ChatRequest) -> tuple[str, bool]:
+    """Call the n8n chat agent webhook and return the assistant reply.
+
+    Expects the n8n workflow to return JSON with one of the keys: 'output',
+    'response', 'text', or 'message'. Returns a French error message on
+    unexpected payloads; raises on network/protocol errors so caller can handle.
+    """
+    if not N8N_URL:
+        logger.warning(
+            "N8N_URL not configured; cannot route chat to n8n agent")
+        return ("Service indisponible pour le moment. Réessayez plus tard.", False)
+
+    payload: Dict[str, Any] = {
+        "message": chat_request.message,
+        "language": chat_request.language,
+        "context": chat_request.context,
+    }
+
+    try:
+        response = requests.post(N8N_URL, json=payload, timeout=30)
+        response.raise_for_status()
+        data: Any = response.json()
+
+        if isinstance(data, dict):
+            for key in ("output", "response", "text", "message"):
+                value = data.get(key)
+                if isinstance(value, str) and value.strip():
+                    return (value.strip(), True)
+
+        if isinstance(data, str) and data.strip():
+            return (data.strip(), True)
+
+        logger.error("n8n webhook returned unexpected payload structure")
+        return ("Désolé, une erreur est survenue avec le service n8n.", False)
+    except Exception as e:
+        logger.error(f"n8n error: {str(e)}")
+        return ("Erreur de traitement, réessayez.", False)
+
+
+def call_openai_fallback(chat_request: ChatRequest, message: str) -> tuple[str, bool]:
+    """Call OpenAI API as fallback when N8N fails.
+
+    Returns the AI response and success flag. Success is False on API errors.
+    """
+    if not OPENAI_AVAILABLE or not openai_client:
+        logger.warning("OpenAI client not available for fallback")
+        return ("Service OpenAI indisponible.", False)
+
+    try:
+        system_prompt = get_system_prompt(
+            chat_request.language or "fr", chat_request.context)
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": message}
+        ]
+        response = openai_client.chat.completions.create(
+            model=OPENAI_MODEL,
+            messages=messages,  # type: ignore
+            max_tokens=200,
+            temperature=0.7,
+        )
+        ai_response = (response.choices[0].message.content or "").strip()
+        if not ai_response:
+            ai_response = "Désolé, je n'ai pas pu générer une réponse appropriée. Contactez-nous directement pour en savoir plus sur nos services."
+
+        return (ai_response, True)
+    except Exception as e:
+        logger.error(f"OpenAI API error: {str(e)}")
+        return ("Erreur OpenAI, réessayez.", False)
+
+
 # Initialize FastAPI app
 app = FastAPI(
     title="Kokotajlo API",
@@ -241,48 +314,29 @@ async def chat_endpoint(request: Request, chat_request: ChatRequest):
         logger.info(
             f"Chat request received: {message[:50]}... (lang: {chat_request.language})")
 
-        # Check if OpenAI is available
-        if OPENAI_AVAILABLE and openai_client:
-            try:
-                # Get dynamic system prompt based on language and context
-                system_prompt = get_system_prompt(
-                    chat_request.language, chat_request.context)
+        # Try n8n chat agent first (availability checker)
+        n8n_text, n8n_ok = call_n8n_chat_agent(chat_request)
+        if n8n_ok:
+            return ChatResponse(
+                response=n8n_text,
+                language=chat_request.language or "fr",
+                timestamp=datetime.utcnow().isoformat() + "Z",
+                conversation_id=f"conv_n8n_{random.randint(1000, 9999)}"
+            )
 
-                # Prepare messages for OpenAI
-                messages = [
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": message}
-                ]
+        # OpenAI fallback
+        openai_text, openai_ok = call_openai_fallback(chat_request, message)
+        if openai_ok:
+            return ChatResponse(
+                response=openai_text,
+                language=chat_request.language or "fr",
+                timestamp=datetime.utcnow().isoformat() + "Z",
+                conversation_id=f"conv_openai_{random.randint(1000, 9999)}"
+            )
 
-                # Call OpenAI API
-                response = openai_client.chat.completions.create(
-                    model=OPENAI_MODEL,
-                    messages=messages,  # type: ignore
-                    max_tokens=200,
-                    temperature=0.7,
-                )
-
-                ai_response = response.choices[0].message.content or ""
-
-                if not ai_response:
-                    ai_response = "Désolé, je n'ai pas pu générer une réponse appropriée. Contactez-nous directement pour en savoir plus sur nos services."
-                else:
-                    ai_response = ai_response.strip()
-
-                return ChatResponse(
-                    response=ai_response,
-                    language=chat_request.language or "fr",
-                    timestamp=datetime.utcnow().isoformat() + "Z",
-                    conversation_id=f"conv_{random.randint(1000, 9999)}"
-                )
-            except Exception as e:
-                logger.error(f"OpenAI API error: {str(e)}")
-                # Fall through to fallback
-
-        # Get dynamic fallback responses based on language and context
+        # Final canned fallback
         fallback_responses = get_fallback_responses(
-            chat_request.language, chat_request.context)
-
+            chat_request.language or "fr", chat_request.context)
         return ChatResponse(
             response=random.choice(fallback_responses),
             language=chat_request.language or "fr",
