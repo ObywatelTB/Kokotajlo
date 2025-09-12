@@ -20,6 +20,7 @@ from openai import OpenAI
 import yaml  # type: ignore
 from pathlib import Path
 import requests  # type: ignore
+from logging_config import logger, console_handler, log_level, configure_uvicorn_logging
 
 # Load environment variables
 load_dotenv()
@@ -27,13 +28,6 @@ load_dotenv()
 # Constants
 OPENAI_MODEL = "gpt-4o-mini"
 N8N_URL = os.getenv("N8N_URL", "")
-
-# Configure logging
-logging.basicConfig(
-    level=getattr(logging, os.getenv("LOG_LEVEL", "INFO")),
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
-logger = logging.getLogger(__name__)
 
 
 def load_prompts(file_path: str) -> dict:
@@ -507,10 +501,18 @@ if __name__ == "__main__":
     else:
         log_level = "info"  # default
 
-    uvicorn.run(
+    # Configure uvicorn logging to use our JSON formatter
+    uvicorn_config = uvicorn.Config(
         "main:app",
-        host=host,  # List creates separate sockets for each
+        host=host,
         port=port,
         reload=debug,
-        log_level=log_level
+        log_level=log_level,
+        access_log=True
     )
+
+    # Configure uvicorn to use the same JSON formatter
+    configure_uvicorn_logging(console_handler)
+
+    server = uvicorn.Server(uvicorn_config)
+    server.run()
