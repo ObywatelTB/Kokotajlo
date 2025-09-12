@@ -60,6 +60,9 @@
         },
         "PORT": {
           "type": "port"
+        },
+        "N8N_URL": {
+          "type": "secret"
         }
       }
     }

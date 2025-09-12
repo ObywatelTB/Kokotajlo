@@ -1,0 +1,19 @@
+[phases.setup]
+nixPkgs = ['python312']
+
+[phases.install]
+cmds = [
+  'python -m venv /opt/venv',
+  '. /opt/venv/bin/activate',
+  'pip install poetry',
+  'poetry install --no-dev --no-interaction --no-ansi'
+]
+
+[phases.build]
+cmds = [
+  '. /opt/venv/bin/activate',
+  'echo "Python backend built successfully"'
+]
+
+[start]
+cmd = '. /opt/venv/bin/activate && uvicorn main:app --host 0.0.0.0 --port $PORT'
