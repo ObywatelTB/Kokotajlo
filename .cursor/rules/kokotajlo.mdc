@@ -228,4 +228,5 @@ When updating existing components:
 - Installs only production dependencies, excludes dev type stubs
 - Use in `nixpacks.toml` and `railway.json`
 - Set `package-mode = false` in pyproject.toml to prevent project installation
+- Use full path `/opt/venv/bin/uvicorn` in start commands (virtual env activation doesn't persist)
 
