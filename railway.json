@@ -32,11 +32,10 @@
       "name": "Kokotajlo Backend",
       "description": "FastAPI backend with OpenAI GPT-4o-mini for AI chatbot and contact forms",
       "build": {
-        "builder": "NIXPACKS",
-        "buildCommand": "cd backend && poetry install --only main"
+        "builder": "NIXPACKS"
       },
       "deploy": {
-        "startCommand": "cd backend && /opt/venv/bin/python main.py",
+        "startCommand": "/opt/venv/bin/python main.py",
         "healthcheckPath": "/health",
         "healthcheckTimeout": 300,
         "restartPolicyType": "ON_FAILURE",
@@ -44,10 +43,10 @@
       },
       "source": {
         "repo": "https://github.com/ObywatelTB/Kokotajlo",
-        "rootDirectory": "."
+        "rootDirectory": "backend"
       },
       "envVars": {
-        "PYTHON_VERSION": "3.9",
+        "PYTHON_VERSION": "3.12",
         "POETRY_VERSION": "1.8",
         "OPENAI_API_KEY": {
           "type": "secret"
