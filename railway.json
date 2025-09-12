@@ -5,7 +5,7 @@
       "name": "Kokotajlo Frontend",
       "description": "Next.js 15 bilingual landing page for French enterprise AI pilots",
       "build": {
-        "builder": "NIXPACKS",
+        "builder": "DOCKERFILE",
         "buildCommand": "npm ci && npm run build"
       },
       "deploy": {
