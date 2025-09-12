@@ -23,6 +23,7 @@ const Chatbot = ({ position = 'bottom-right', defaultOpen = false }: ChatbotProp
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [sessionId, setSessionId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const pathname = usePathname();
@@ -37,6 +38,23 @@ const Chatbot = ({ position = 'bottom-right', defaultOpen = false }: ChatbotProp
   }, [pathname]);
 
   const positionClass = position === 'top-right' ? 'top-4 right-4' : 'bottom-4 right-4';
+
+  // Initialize or load a persistent sessionId for this browser
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const key = 'kokotajlo_session_id';
+      let id = window.localStorage.getItem(key);
+      if (!id) {
+        id = (window.crypto?.randomUUID?.() || `sess_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`);
+        window.localStorage.setItem(key, id);
+      }
+      setSessionId(id);
+    } catch {
+      // ignore localStorage errors; backend will generate a sessionId
+      setSessionId(null);
+    }
+  }, []);
 
   // Initial message when widget opens
   useEffect(() => {
@@ -114,7 +132,7 @@ const Chatbot = ({ position = 'bottom-right', defaultOpen = false }: ChatbotProp
         body: JSON.stringify({
           message: userMessage.content,
           language: 'fr',
-          context: { page: context },
+          context: { page: context, sessionId: sessionId || undefined },
         }),
       });
 

@@ -42,6 +42,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         message,
         language,
+        // Ensure we forward sessionId if present in the incoming context
         context: context && typeof context === 'object' ? context : undefined,
       }),
     });

@@ -19,6 +19,7 @@ const InlineChat = ({ locale = 'fr', context = 'general' }: InlineChatProps) => 
   const [input, setInput] = useState('');
   const [isExpanded, setIsExpanded] = useState(false);
   const [isSending, setIsSending] = useState(false);
+  const [sessionId, setSessionId] = useState<string | null>(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
@@ -60,6 +61,22 @@ const InlineChat = ({ locale = 'fr', context = 'general' }: InlineChatProps) => 
     if (!scrollerRef.current) return;
     scrollerRef.current.scrollTop = scrollerRef.current.scrollHeight;
   }, [messages, isExpanded]);
+
+  // Initialize or load a persistent sessionId for this browser
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const key = 'kokotajlo_session_id';
+      let id = window.localStorage.getItem(key);
+      if (!id) {
+        id = (window.crypto?.randomUUID?.() || `sess_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`);
+        window.localStorage.setItem(key, id);
+      }
+      setSessionId(id);
+    } catch {
+      setSessionId(null);
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -111,7 +128,7 @@ const InlineChat = ({ locale = 'fr', context = 'general' }: InlineChatProps) => 
         body: JSON.stringify({
           message: text,
           language: locale,
-          context: { page: context }
+          context: { page: context, sessionId: sessionId || undefined }
         }),
       });
       const data = await res.json();

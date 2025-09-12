@@ -21,6 +21,7 @@ import yaml  # type: ignore
 from pathlib import Path
 import requests  # type: ignore
 from logging_config import logger, console_handler, log_level, configure_uvicorn_logging
+import uuid
 
 # Load environment variables
 load_dotenv()
@@ -33,7 +34,8 @@ N8N_URL = os.getenv("N8N_URL", "")
 def load_prompts(file_path: str) -> dict:
     """Load prompts from YAML file with error handling."""
     try:
-        logger.info(f"Attempting to load prompts from absolute path: {Path(file_path).absolute()}")
+        logger.info(
+            f"Attempting to load prompts from absolute path: {Path(file_path).absolute()}")
         with open(file_path, 'r', encoding='utf-8') as f:
             return yaml.safe_load(f)
     except FileNotFoundError:
@@ -184,9 +186,10 @@ def call_n8n_chat_agent(chat_request: ChatRequest) -> tuple[str, bool]:
         return ("Service indisponible pour le moment. Réessayez plus tard.", False)
 
     payload: Dict[str, Any] = {
-        "message": chat_request.message,
+        "chatInput": chat_request.message,
         "language": chat_request.language,
         "context": chat_request.context,
+        "sessionId": (chat_request.context or {}).get("sessionId") if isinstance(chat_request.context, dict) else None,
     }
 
     try:
@@ -311,6 +314,21 @@ async def chat_endpoint(request: Request, chat_request: ChatRequest):
         # Log for Railway
         logger.info(
             f"Chat request received: {message[:50]}... (lang: {chat_request.language})")
+
+        # Ensure a stable sessionId for stateful conversations
+        session_id = None
+        try:
+            if chat_request.context and isinstance(chat_request.context, dict):
+                session_id = chat_request.context.get("sessionId")
+        except Exception:
+            session_id = None
+        if not session_id:
+            session_id = str(uuid.uuid4())
+
+        # Inject sessionId back into context for downstream consumers (n8n, logs)
+        if chat_request.context is None or not isinstance(chat_request.context, dict):
+            chat_request.context = {}
+        chat_request.context["sessionId"] = session_id
 
         # Try n8n chat agent first (availability checker)
         n8n_text, n8n_ok = call_n8n_chat_agent(chat_request)
