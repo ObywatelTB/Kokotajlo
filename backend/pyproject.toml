@@ -3,6 +3,7 @@ name = "kokotajlo-backend"
 version = "0.1.0"
 description = "FastAPI backend for AI agent chatbot with OpenAI integration"
 authors = ["Tobiasz Bajek <your.email@example.com>", "Mengran <mengran@example.com>"]  # Add this; use real emails or placeholders
+package-mode = false
 
 
 [tool.poetry.dependencies]

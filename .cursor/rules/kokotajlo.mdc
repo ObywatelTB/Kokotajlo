@@ -221,3 +221,11 @@ When updating existing components:
 - Ensure `hover:` states use theme colors
 - Add `transition-colors duration-200` for smooth transitions
 
+## Poetry Deployment
+
+**Poetry 2.x flag**: Use `--only main` for production builds (replaces deprecated `--no-dev`)
+- Railway uses Poetry 2.1.4
+- Installs only production dependencies, excludes dev type stubs
+- Use in `nixpacks.toml` and `railway.json`
+- Set `package-mode = false` in pyproject.toml to prevent project installation
+
