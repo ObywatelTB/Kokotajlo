@@ -6,7 +6,7 @@ cmds = [
   'python -m venv /opt/venv',
   '. /opt/venv/bin/activate',
   'pip install poetry',
-  'poetry install --no-dev --no-interaction --no-ansi'
+  'poetry install --only main --no-interaction --no-ansi'
 ]
 
 [phases.build]

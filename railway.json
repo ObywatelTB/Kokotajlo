@@ -33,7 +33,7 @@
       "description": "FastAPI backend with OpenAI GPT-4o-mini for AI chatbot and contact forms",
       "build": {
         "builder": "NIXPACKS",
-        "buildCommand": "cd backend && poetry install --no-dev"
+        "buildCommand": "cd backend && poetry install --only main"
       },
       "deploy": {
         "startCommand": "cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT",
