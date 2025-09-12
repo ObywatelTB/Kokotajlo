@@ -1,8 +1,0 @@
-[phases.setup]
-nixPkgs = ["python312", "poetry"]
-
-[phases.install]
-cmds = ['poetry config virtualenvs.in-project true --local', 'poetry install --only main']
-
-[start]
-cmd = "poetry run python main.py"
