@@ -1,12 +1,13 @@
 FROM python:3.12-slim
 
+# Set environment variables
 ENV PYTHONUNBUFFERED=1 \
     POETRY_VERSION=1.8.3 \
     POETRY_HOME="/opt/poetry" \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
     POETRY_NO_INTERACTION=1 \
     PYSETUP_PATH="/opt/pysetup" \
-    VENV_PATH="/opt/venv"  # Changed to /opt/venv
+    VENV_PATH="/opt/venv"
 
 ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 
@@ -23,4 +24,4 @@ COPY . /app
 RUN poetry install --only-root
 
 EXPOSE $PORT
-CMD ["python", "main.py"]  # Still overridden by custom command, but good fallback
+CMD ["python", "main.py"]
