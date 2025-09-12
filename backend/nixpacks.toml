@@ -1,19 +1,8 @@
 [phases.setup]
-nixPkgs = ['python312']
+nixPkgs = ["python312", "poetry"]
 
 [phases.install]
-cmds = [
-  'python -m venv /opt/venv',
-  '. /opt/venv/bin/activate',
-  'pip install poetry',
-  'poetry install --only main --no-interaction --no-ansi'
-]
-
-[phases.build]
-cmds = [
-  '. /opt/venv/bin/activate',
-  'echo "Python backend built successfully"'
-]
+cmds = ["poetry install --only main"]
 
 [start]
-cmd = '/opt/venv/bin/python main.py'
+cmd = "poetry run python main.py"
