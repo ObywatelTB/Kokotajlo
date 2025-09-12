@@ -33,6 +33,7 @@ N8N_URL = os.getenv("N8N_URL", "")
 def load_prompts(file_path: str) -> dict:
     """Load prompts from YAML file with error handling."""
     try:
+        logger.info(f"Attempting to load prompts from absolute path: {Path(file_path).absolute()}")
         with open(file_path, 'r', encoding='utf-8') as f:
             return yaml.safe_load(f)
     except FileNotFoundError:
@@ -93,9 +94,9 @@ else:
 # Load prompts from YAML files
 # Get the directory of the current file and construct paths to YAML files
 current_dir = Path(__file__).parent
-prompts_dir = current_dir.parent / "src" / "prompts"
-system_prompts_file = prompts_dir / "system.yaml"
-fallback_prompts_file = prompts_dir / "fallback.yaml"
+textprompts_dir = current_dir / "prompts"
+system_prompts_file = textprompts_dir / "system.yaml"
+fallback_prompts_file = textprompts_dir / "fallback.yaml"
 
 SYSTEM_PROMPTS = load_prompts(str(system_prompts_file))
 FALLBACK_PROMPTS = load_prompts(str(fallback_prompts_file))
@@ -104,6 +105,7 @@ FALLBACK_PROMPTS = load_prompts(str(fallback_prompts_file))
 def get_system_prompt(language: str = "fr", context: Optional[Dict[str, Any]] = None) -> str:
     """Get system prompt based on context (language handled within prompt)."""
     try:
+        logger.debug(f"Loaded SYSTEM_PROMPTS: {SYSTEM_PROMPTS}")
         # Default to general context if no context provided
         context_key = "general"
         if context and "page" in context:
@@ -137,6 +139,7 @@ def get_system_prompt(language: str = "fr", context: Optional[Dict[str, Any]] = 
 def get_fallback_responses(language: str = "fr", context: Optional[Dict[str, Any]] = None) -> List[str]:
     """Get fallback responses based on language and context."""
     try:
+        logger.debug(f"Loaded FALLBACK_PROMPTS: {FALLBACK_PROMPTS}")
         # Default to general context if no context provided
         context_key = "general"
         if context and "page" in context:
@@ -217,6 +220,7 @@ def call_openai_fallback(chat_request: ChatRequest, message: str) -> tuple[str, 
         return ("Service OpenAI indisponible.", False)
 
     try:
+        logger.warning("n8n agent failed, falling back to OpenAI")
         system_prompt = get_system_prompt(
             chat_request.language or "fr", chat_request.context)
         messages = [
