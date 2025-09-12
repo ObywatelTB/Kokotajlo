@@ -6,7 +6,7 @@ ENV PYTHONUNBUFFERED=1 \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
     POETRY_NO_INTERACTION=1 \
     PYSETUP_PATH="/opt/pysetup" \
-    VENV_PATH="/opt/pysetup/.venv"
+    VENV_PATH="/opt/venv"  # Changed to /opt/venv
 
 ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 
@@ -23,4 +23,4 @@ COPY . /app
 RUN poetry install --only-root
 
 EXPOSE $PORT
-CMD ["python", "main.py"]
+CMD ["python", "main.py"]  # Still overridden by custom command, but good fallback
